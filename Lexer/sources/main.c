@@ -5,7 +5,7 @@
 ** Login   <besnie_b@epitech.net>
 ** 
 ** Started on  Sat Apr 19 15:02:31 2014 besnie_b
-** Last update Thu May  8 15:41:16 2014 besnie_b
+** Last update Wed May 14 14:08:35 2014 besnie_b
 */
 
 #include "lexer.h"
@@ -14,6 +14,7 @@ int	main(int ac, char **av)
 {
   char *str;
   t_list *list;
+  struct node *p_list;
 
   if (ac == 1)
     return (0);
@@ -22,6 +23,8 @@ int	main(int ac, char **av)
   list = my_str_to_list(str, list);
   if (my_verif_syntax(list) == -1)
     return (0);
-  tlist_display(list);
+  p_list = list->p_start;
+  list = my_prio(list, p_list);
+  //tlist_display(list);
   return (0);
 }
