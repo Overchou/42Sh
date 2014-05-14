@@ -5,7 +5,7 @@
 ** Login   <besnie_b@epitech.net>
 **
 ** Started on  Sat Apr 19 15:06:28 2014 besnie_b
-** Last update Thu May  8 17:47:21 2014 besnie_b
+** Last update Thu May  8 19:27:54 2014 besnie_b
 */
 
 #include <stdlib.h>
@@ -31,7 +31,7 @@ char	*my_epur_str(char *str)
   char	*ret;
 
   len = my_strlen(str);
-  if ((ret = malloc(sizeof(*ret) * len)) == NULL)
+  if ((ret = malloc(sizeof(*ret) * (len + 1))) == NULL)
     return (0);
   i = 0;
   len = 0;
@@ -46,6 +46,7 @@ char	*my_epur_str(char *str)
 	    i++;
 	}
     }
+  ret[len] = 0;
   return (ret);
 }
 
