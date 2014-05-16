@@ -5,7 +5,7 @@
 ** Login   <besnie_b@epitech.net>
 ** 
 ** Started on  Sat Apr 19 15:02:31 2014 besnie_b
-** Last update Fri May 16 15:36:06 2014 guenol_v
+** Last update Fri May 16 16:13:57 2014 guenol_v
 */
 
 #include "lexer.h"
@@ -25,6 +25,5 @@ int	main(int ac, char **av)
     return (0);
   p_list = list->p_start;
   list = my_prio(list, p_list);
-  tlist_display(list);
   return (0);
 }
