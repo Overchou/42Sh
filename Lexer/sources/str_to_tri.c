@@ -5,7 +5,7 @@
 ** Login   <besnie_b@epitech.net>
 **
 ** Started on  Sat Apr 19 15:06:28 2014 besnie_b
-** Last update Thu May  8 19:27:54 2014 besnie_b
+** Last update Fri May 16 14:20:23 2014 besnie_b
 */
 
 #include <stdlib.h>
@@ -14,23 +14,13 @@
 #include <string.h>
 #include "lexer.h"
 
-int	my_strlen(char *str)
-{
-  int	i;
-
-  i = 0;
-  while (str[i] != 0)
-    i++;
-  return (i);
-}
-
 char	*my_epur_str(char *str)
 {
   int	i;
   int	len;
   char	*ret;
 
-  len = my_strlen(str);
+  len = strlen(str);
   if ((ret = malloc(sizeof(*ret) * (len + 1))) == NULL)
     return (0);
   i = 0;

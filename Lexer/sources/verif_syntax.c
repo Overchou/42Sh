@@ -5,7 +5,7 @@
 ** Login   <besnie_b@epitech.net>
 ** 
 ** Started on  Wed May  7 13:48:07 2014 besnie_b
-** Last update Thu May  8 16:12:38 2014 besnie_b
+** Last update Fri May 16 15:16:47 2014 besnie_b
 */
 
 #include <stdlib.h>
@@ -33,7 +33,7 @@ int	check_sytx(char	*str, int type)
 
 int	my_verif_loop(t_list *list)
 {
-  struct node *p_new;
+  t_node *p_new;
 
   p_new = list->p_start;
   while (p_new != NULL)
