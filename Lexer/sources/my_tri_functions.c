@@ -5,14 +5,14 @@
 ** Login   <guenol_v@epitech.net>
 ** 
 ** Started on  Tue May 13 14:46:02 2014 guenol_v
-** Last update Thu May 15 15:01:58 2014 guenol_v
+** Last update Fri May 16 15:55:54 2014 guenol_v
 */
 
 #include <stdlib.h>
 #include "lexer.h"
 #include "my.h"
 
-struct node	*my_prio_ptv(struct node *plist)
+t_node	*my_prio_ptv(t_node *plist)
 {
   my_putstr("C'est un point virgule\n");
   return (plist);
@@ -32,9 +32,9 @@ char    *my_init_value()
   return (ptr);
 }
 
-struct node	*my_init_tab(struct node *plist)
+t_node	*my_init_tab(t_node *plist)
 {
-  struct node* (*fptr[7])(struct node*);
+  t_node *(*fptr[7])(t_node *);
   char	*buffer;
   char	*str;
   int	a;
@@ -47,16 +47,17 @@ struct node	*my_init_tab(struct node *plist)
   /* fptr[3] = &my_prio_red_left; */
   /* fptr[4] = &my_prio_db_right; */
   /* fptr[5] = &my_prio_db_left; */
-  str = my_init_value();
   buffer = plist->data;
-  my_putstr(buffer);
+  str = my_init_value();
   while (buffer[a] != 0)
     {
       x = 0;
       while (str[x] != 0 && str[x] == buffer[a])
 	{
+	  my_putchar('a');
 	  if (str[a] == buffer[a])
 	    (*fptr[x])(plist);
+	  my_putchar('b');
 	  x++;
 	}
       a++;
