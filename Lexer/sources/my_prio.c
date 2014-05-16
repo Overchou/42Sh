@@ -5,14 +5,14 @@
 ** Login   <guenol_v@epitech.net>
 **
 ** Started on  Tue Apr 22 15:29:26 2014 guenol_v
-** Last update Mon May 12 15:15:34 2014 guenol_v
+** Last update Fri May 16 15:14:27 2014 guenol_v
 */
 
 #include <stdlib.h>
 #include "lexer.h"
 #include "my.h"
 
-struct node	*my_swap_first(struct node *plist)
+t_node	*my_swap_first(t_node *plist)
 {
   while (plist != NULL)
     plist = plist->p_prev;
@@ -21,15 +21,8 @@ struct node	*my_swap_first(struct node *plist)
 
 int	verif_prio(struct node *plist)
 {
-  if (my_strcmp(plist->data, ";") == 0)
-    my_swap_first(plist);
-  else if (my_strcmp(plist->data, "|") == 0)
-    my_printf(" pipe ");
-  else if (my_strcmp(plist->data, ">") == 0)
-    my_printf(" droite ");
-  else if (my_strcmp(plist->data, "<") == 0)
-    my_printf(" gauche ");
-  else if (my_strcmp(plist->data, ">>") == 0)
+  plist = my_init_tab(plist->data);
+  if (my_strcmp(plist->data, ">>") == 0)
     my_printf(" db.droite ");
   else if (my_strcmp(plist->data, "<<") == 0)
     my_printf(" db.gauche ");
@@ -40,7 +33,7 @@ int	verif_prio(struct node *plist)
   return (1);
 }
 
-t_list	*my_prio(t_list *list, struct node *plist)
+t_list	*my_prio(t_list *list, tnode *plist)
 {
   int	a;
 
@@ -52,6 +45,5 @@ t_list	*my_prio(t_list *list, struct node *plist)
       plist = plist->p_nx1;
       my_prio(list, plist);
     }
-  //tlist_display(list);
   return (list);
 }
