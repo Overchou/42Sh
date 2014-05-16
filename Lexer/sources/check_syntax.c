@@ -5,9 +5,10 @@
 ** Login   <besnie_b@epitech.net>
 ** 
 ** Started on  Thu May  8 15:48:14 2014 besnie_b
-** Last update Thu May  8 17:32:15 2014 besnie_b
+** Last update Fri May 16 14:19:02 2014 besnie_b
 */
 
+#include <string.h>
 #include "lexer.h"
 
 int     my_strcmp_strict(char *str, char *comp)
@@ -15,8 +16,8 @@ int     my_strcmp_strict(char *str, char *comp)
   int   i;
   int   j;
 
-  i = my_strlen(str);
-  j = my_strlen(comp);
+  i = strlen(str);
+  j = strlen(comp);
   if (i != j)
     return (-1);
   i = 0;

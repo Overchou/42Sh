@@ -5,7 +5,7 @@
 ** Login   <besnie_b@epitech.net>
 **
 ** Started on  Thu Apr 17 18:48:25 2014 besnie_b
-** Last update Wed May  7 15:14:49 2014 besnie_b
+** Last update Fri May 16 15:18:23 2014 besnie_b
 */
 
 #include <stdlib.h>
@@ -39,7 +39,7 @@ t_list   *tlist_new(void)
 
 t_list   *tlist_append(t_list *p_list, char *data, int type)
 {
-  struct node *p_new;
+  t_node *p_new;
 
   if (p_list != NULL)
     {
@@ -59,7 +59,7 @@ t_list   *tlist_append(t_list *p_list, char *data, int type)
   return (p_list);
 }
 
-t_list   *tlist_append2(t_list *p_list, struct node *p_new)
+t_list   *tlist_append2(t_list *p_list, t_node *p_new)
 {
   if (p_list->p_end == NULL)
     {
@@ -82,14 +82,14 @@ t_list   *tlist_append2(t_list *p_list, struct node *p_new)
 
 void    tlist_display(t_list *p_list)
 {
-  struct node *p_tmp;
+  t_node *p_tmp;
 
   if (p_list != NULL)
     {
       p_tmp = p_list->p_start;
       while (p_tmp != NULL)
         {
-          printf("%s$", p_tmp->data);
+          printf("%s -> ", p_tmp->data);
 	  p_tmp = p_tmp->p_nx1;
         }
     }

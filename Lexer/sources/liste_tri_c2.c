@@ -5,7 +5,7 @@
 ** Login   <besnie_b@epitech.net>
 **
 ** Started on  Thu Apr 24 10:56:12 2014 besnie_b
-** Last update Thu Apr 24 11:12:22 2014 besnie_b
+** Last update Fri May 16 15:30:47 2014 guenol_v
 */
 
 #include <stdlib.h>
@@ -19,7 +19,7 @@
 
 t_list   *node_delete1(t_list *p_list, int pos)
 {
-  struct node *p_tmp;
+  t_node *p_tmp;
   int   i;
 
   if (p_list != NULL)
@@ -42,7 +42,7 @@ t_list   *node_delete1(t_list *p_list, int pos)
 ** Necessaire pour avoir une fonction à la norme
 */
 
-void	node_delete2(t_list *p_list, struct node *p_tmp)
+void	node_delete2(t_list *p_list, t_node *p_tmp)
 {
   if (p_tmp->p_nx1 == NULL)
     {
