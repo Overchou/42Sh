@@ -5,7 +5,7 @@
 ** Login   <guenol_v@epitech.net>
 **
 ** Started on  Tue Apr 22 15:29:26 2014 guenol_v
-** Last update Fri May 16 15:14:27 2014 guenol_v
+** Last update Fri May 16 15:33:52 2014 guenol_v
 */
 
 #include <stdlib.h>
@@ -19,7 +19,7 @@ t_node	*my_swap_first(t_node *plist)
   return (plist);
 }
 
-int	verif_prio(struct node *plist)
+int	verif_prio(t_node *plist)
 {
   plist = my_init_tab(plist->data);
   if (my_strcmp(plist->data, ">>") == 0)
@@ -33,7 +33,7 @@ int	verif_prio(struct node *plist)
   return (1);
 }
 
-t_list	*my_prio(t_list *list, tnode *plist)
+t_list	*my_prio(t_list *list, t_node *plist)
 {
   int	a;
 
