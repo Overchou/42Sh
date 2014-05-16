@@ -5,20 +5,20 @@
 ** Login   <besnie_b@epitech.net>
 **
 ** Started on  Thu Apr 17 19:07:26 2014 besnie_b
-** Last update Mon May 12 15:24:33 2014 guenol_v
+** Last update Fri May 16 15:14:08 2014 guenol_v
 */
 
 #ifndef LEXER_H__
 # define LEXER_H__
 
-struct node
+typedef struct s_node
 {
   char	*data;
   int	type;
   struct node *p_prev;
   struct node *p_nx1;
   struct node *p_nx2;
-;
+} t_node;
 
 typedef struct tlist
 {
@@ -75,5 +75,12 @@ int     check_stop(char *str);
 */
 t_list  *my_prio(t_list *, struct node *);
 int     verif_prio(struct node *);
+
+/*
+** my_tri_functions.c
+*/
+struct node     *my_init_tab(struct node *);
+char    *my_init_value();
+struct node     *my_prio_ptv(struct node *);
 
 #endif /* LEXER_H__ */
