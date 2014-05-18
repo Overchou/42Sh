@@ -5,7 +5,7 @@
 ** Login   <theven_d@epitech.net>
 ** 
 ** Started on  Wed Mar  5 15:32:04 2014 theven_d
-** Last update Fri May 16 15:40:25 2014 theven_d
+** Last update Sun May 18 14:45:59 2014 besnie_b
 */
 
 #include <unistd.h>
@@ -131,7 +131,7 @@ int	my_fork(char *buffer, t_env *chain_env)
   if ((path = my_get_path(chain_env)) == NULL)
     return (my_putstr("No Path\n"));
   if ((arg = my_str_to_wordtab(buffer)) == NULL)
-    return (my_printf("fail\n"));
+    return (my_printf("Error S_t_W\n"));
   if ((cmd = my_check_access(arg[0], path)) == NULL)
     return (my_printf("%s : Command not found\n", buffer));
   pid = fork();
@@ -139,7 +139,7 @@ int	my_fork(char *buffer, t_env *chain_env)
     {
       if (execve(cmd, arg, tab_env(chain_env)) == -1)
 	my_printf("%s : Command not found\n", buffer);
-      exit(1);
+      exit(1); // ! \\ WHAT ??????????????????????????????????????????
     }
   else
     wait(&status);
