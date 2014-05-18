@@ -5,12 +5,25 @@
 ** Login   <auffra_a@epitech.net>
 ** 
 ** Started on  Fri May 16 14:16:43 2014 auffra_a
-** Last update Fri May 16 14:51:51 2014 auffra_a
+** Last update Sun May 18 14:51:31 2014 auffra_a
 */
 
 #include <stdlib.h>
 #include <unistd.h>
 #include "my.h"
+
+void    my_free_tab(char **tab)
+{
+  int   i;
+
+  i = 0;
+  while (tab[i] != NULL)
+    {
+      free(tab[i]);
+      i = i + 1;
+    }
+  free(tab);
+}
 
 char    *concat_path(char *str, char *str2)
 {
@@ -61,24 +74,20 @@ char    *my_check_access(char *arg, char **path)
   return (NULL);
 }
 
-int	my_father(int pipefd[2], char **cmd2, char **path , char **env)
+char	*get_pipe_str(int pipefd[2], char *strpipe)
 {
-  char	*cmd;
+  int n;
+  char buf;
 
-  if ((cmd = my_check_access(cmd2[0], path)) == NULL)
-    {
-      my_putstr("Command not found\n");
-      return (0);
-    }
+  n = -1;
   close(pipefd[1]);
-  if (dup2(pipefd[0], 0) == -1)
-    return (-1);
-  if (execve(cmd, cmd2, env) == -1)
-    my_putstr("Command not found. Fuck you.\n");
-  return (0);
+  while (read(pipefd[0], &buf, 1) > 0)
+    strpipe[++n] = buf;
+  close(pipefd[0]);
+  return (strpipe);
 }
 
-int	my_exec_pipe(char **cmd1, char **cmd2, char **path , char **env)
+char	*my_exec_pipe(char **cmd1, char **path , char **env, char *strpipe)
 {
   int	pipefd[2];
   int	pid;
@@ -87,51 +96,50 @@ int	my_exec_pipe(char **cmd1, char **cmd2, char **path , char **env)
   if ((cmd = my_check_access(cmd1[0], path)) == NULL)
     {
       my_putstr("Command not found. Lol.\n");
-      return (0);
+      return (NULL);
     }
   if (pipe(pipefd) == -1)
-    return (-1);
+    return (NULL);
   if ((pid = fork()) == -1)
-    return (-1);
+    return (NULL);
   if (pid == 0)
     {
       close(pipefd[0]);
       if (dup2(pipefd[1], 1) == -1)
-	return (-1);
+	return (NULL);
       if (execve(cmd, cmd1, env) == -1)
         my_putstr("Command not found. Fuck.\n");
-      return (0);
+      return (NULL);
     }
   else
-    {
-      if (my_father(pipefd, cmd2, path, env) == -1)
-	return (-1);
-    }
-  return (0);
+    strpipe = get_pipe_str(pipefd, strpipe);
+  free(cmd);
+  return (strpipe);
 }
 
-int	my_pipe(char *cmd1, char *cmd2, char **path, char **env)
+char	*my_pipe(char *cmd1, char **path, char **env, char *strpipe)
 {
   char	**tab1;
-  char	**tab2;
-  int	i;
 
-  i = 0;
   if ((tab1 = my_str_to_wordtab(cmd1)) == NULL)
-    return (-1);
-  if ((tab2 = my_str_to_wordtab(cmd2)) == NULL)
-    return (-1);
-  my_exec_pipe(tab1, tab2, path, env);
-  /* my_free_tab(tab1); */
-  /* my_free_tab(tab2); */
-  return (0);
+    return (NULL);
+  strpipe = my_exec_pipe(tab1, path, env, strpipe);
+  my_free_tab(tab1);
+  return (strpipe);
 }
 
 int	main(int argc, char **argv, char **env)
 {
   char **path;
   char *pt = "/usr/bin/";
+  char *strpipe;
 
+  if ((strpipe = malloc(sizeof(*strpipe) * 5000)) == NULL)
+    return (0);
   path = my_str_to_wordtab(pt);
-  my_pipe(argv[1], argv[2], path, env);
+  strpipe = my_pipe(argv[1], path, env, strpipe);
+  my_putstr(strpipe);
+  my_free_tab(path);
+  free(strpipe);
+  return (0);
 }
