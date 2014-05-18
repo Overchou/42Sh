@@ -5,7 +5,7 @@
 ** Login   <auffra_a@epitech.net>
 ** 
 ** Started on  Fri May 16 14:16:43 2014 auffra_a
-** Last update Sun May 18 14:51:31 2014 auffra_a
+** Last update Sun May 18 16:02:16 2014 besnie_b
 */
 
 #include <stdlib.h>
@@ -87,11 +87,12 @@ char	*get_pipe_str(int pipefd[2], char *strpipe)
   return (strpipe);
 }
 
-char	*my_exec_pipe(char **cmd1, char **path , char **env, char *strpipe)
+char	*my_exec_pipe(char **cmd1, char **path , char **env)
 {
   int	pipefd[2];
   int	pid;
   char	*cmd;
+  char *strpipe;
 
   if ((cmd = my_check_access(cmd1[0], path)) == NULL)
     {
@@ -117,10 +118,13 @@ char	*my_exec_pipe(char **cmd1, char **path , char **env, char *strpipe)
   return (strpipe);
 }
 
-char	*my_pipe(char *cmd1, char **path, char **env, char *strpipe)
+char	*my_start_pipe(char *cmd1, char **path, char **env)
 {
   char	**tab1;
+  char	*strpipe;
 
+  if ((strpipe = malloc(sizeof(*strpipe) * 5000)) == NULL)
+    return (0);
   if ((tab1 = my_str_to_wordtab(cmd1)) == NULL)
     return (NULL);
   strpipe = my_exec_pipe(tab1, path, env, strpipe);
@@ -132,13 +136,11 @@ int	main(int argc, char **argv, char **env)
 {
   char **path;
   char *pt = "/usr/bin/";
-  char *strpipe;
+  char *str;
 
-  if ((strpipe = malloc(sizeof(*strpipe) * 5000)) == NULL)
-    return (0);
   path = my_str_to_wordtab(pt);
-  strpipe = my_pipe(argv[1], path, env, strpipe);
-  my_putstr(strpipe);
+  str = my_start_pipe(argv[1], path, env);
+  my_putstr(str);
   my_free_tab(path);
   free(strpipe);
   return (0);
