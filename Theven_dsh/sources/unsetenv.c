@@ -5,7 +5,7 @@
 ** Login   <theven_d@epitech.net>
 ** 
 ** Started on  Fri Apr 18 19:44:42 2014 theven_d
-** Last update Fri May 16 14:56:53 2014 theven_d
+** Last update Mon May 19 17:23:53 2014 theven_d
 */
 
 #include <stdlib.h>
@@ -68,8 +68,9 @@ int	my_unsetenv(t_env *env, char *cmd)
     {
       if (my_cmp_env(inte->value, cmd) == 0)
 	{
-	  while (tmp->next != inte)
-	    tmp = tmp->next;
+	  if (tmp != inte)
+	    while (tmp->next != inte)
+	      tmp = tmp->next;
 	  tmp->next = inte->next;
 	  reset_env(env);
 	  my_printf("unsetenv success\n");

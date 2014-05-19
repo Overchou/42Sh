@@ -5,7 +5,7 @@
 ## Login   <theven_d@epitech.net>
 ## 
 ## Started on  Mon Oct 21 22:12:01 2013 theven_d
-## Last update Wed May  7 17:01:26 2014 theven_d
+## Last update Fri May 16 18:37:09 2014 theven_d
 ##
 
 NAME	= libmy.a
@@ -13,6 +13,7 @@ NAME	= libmy.a
 INCLUDE	= my.h
 
 SRCS	= my_putchar.c \
+	  my_epur_str.c \
 	  my_str_to_wordtab.c \
 	  my_check_str.c \
 	  my_nncmp.c \

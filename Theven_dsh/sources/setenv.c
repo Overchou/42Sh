@@ -5,7 +5,7 @@
 ** Login   <theven_d@epitech.net>
 ** 
 ** Started on  Fri Apr 25 17:29:51 2014 theven_d
-** Last update Fri May 16 14:48:23 2014 theven_d
+** Last update Mon May 19 18:00:39 2014 theven_d
 */
 
 #include <string.h>
@@ -84,11 +84,9 @@ int	my_add(t_env *tmp, char **set)
       if ((i = my_strcmpenv(tmp->value, set[0])) == 0)
 	{
 	  if (check != 0)
-	    {
-	      if ((tmp->value = concat_setenv(set[0], set[1])) == NULL)
-		return (-1);
-	      return (1);
-	  }
+	    if ((tmp->value = concat_setenv(set[0], set[1])) == NULL)
+	      return (-1);
+	  return (1); 
 	}
       if (tmp->next == NULL)
 	return (my_new_add(set, tmp));
@@ -97,31 +95,32 @@ int	my_add(t_env *tmp, char **set)
   return (0);
 }
 
-int	my_setenv(char *str, t_env *env)
+t_env	*my_setenv(char *str, t_env *env)
 {
   char	**set;
-  t_env	*new;
   t_env	*tmp;
 
   tmp = env;
   if (str == NULL || str[0] == '\0')
-    return (my_putstr("Wrong argument for setenv\n"));
+    return (NULL);
   if ((set = my_str_to_wordtab(str)) == NULL)
-    return (-1);
+    return (NULL);
   if (set[1] == NULL)
-    return (my_putstr("Wrong argument for setenv\n"));
+    return (NULL);
   if ((set[0] = my_str_capitalize(set[0])) == NULL)
-    return (-1);
+    return (NULL);
   if (env == NULL)
     {
-      if ((new = malloc(sizeof(*new))) == NULL)
+      my_putstr("lol\n");
+      if ((env = malloc(sizeof(*env))) == NULL)
 	return (-1);
-      new->pos = 0;
-      if ((new->value = concat_setenv(set[0], set[1])) == NULL)
+      env->pos = 0;
+      if ((env->value = concat_setenv(set[0], set[1])) == NULL)
 	return (-1);
-      new->next = NULL;
+      env->next = NULL;
+      printf("setenv->pos = %d\n", env->pos);
     }
   else
     my_add(tmp, set);
- return (0);
+ return (env);
 }
