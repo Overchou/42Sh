@@ -5,7 +5,7 @@
 ** Login   <besnie_b@epitech.net>
 **
 ** Started on  Thu Apr 17 19:07:26 2014 besnie_b
-** Last update Fri May 16 18:41:59 2014 guenol_v
+** Last update Mon May 19 21:05:22 2014 guenol_v
 */
 
 #ifndef LEXER_H__
@@ -40,6 +40,7 @@ void    tlist_display(t_list *p_list);
 */
 t_list   *node_delete1(t_list *p_list, int pos);
 void    node_delete2(t_list *p_list, t_node *p_tmp);
+t_node  *tnode_dup(t_node *p_node);
 
 /*
 ** str_to_tri.c
@@ -69,13 +70,20 @@ int     check_op(char *str);
 int     check_redir(char *str);
 int     check_exclu(char *str);
 int     check_stop(char *str);
+int     my_strcmp_strict(char *str, char *comp);
 
 /*
 ** my_prio.c
 */
 t_list  *my_prio(t_list *, t_node *);
-int     verif_prio(t_node *, t_node *);
-int	my_db_verif(t_node *plist, t_node *next);
+int	verif_prio(t_node *);
+int	my_db_verif(t_node *plist);
 t_node	*my_other_prio(t_node *plist, t_node *next);
+t_node  *my_prio_str(t_node *tree);
+
+/*
+** my_tri_functions.c
+*/
+t_node  *my_exec_prio(t_node *plist, int a, t_node *tree);
 
 #endif /* LEXER_H__ */
