@@ -5,7 +5,7 @@
 ** Login   <auffra_a@epitech.net>
 ** 
 ** Started on  Fri May 16 14:16:43 2014 auffra_a
-** Last update Sun May 18 16:02:16 2014 besnie_b
+** Last update Mon May 19 21:05:55 2014 besnie_b
 */
 
 #include <stdlib.h>
@@ -118,30 +118,20 @@ char	*my_exec_pipe(char **cmd1, char **path , char **env)
   return (strpipe);
 }
 
-char	*my_start_pipe(char *cmd1, char **path, char **env)
+char	*my_start_pipe(char *cmd, t_env *env)
 {
-  char	**tab1;
-  char	*strpipe;
+  char	**tab;
+  char	**path;
+  char	*str;
 
   if ((strpipe = malloc(sizeof(*strpipe) * 5000)) == NULL)
-    return (0);
-  if ((tab1 = my_str_to_wordtab(cmd1)) == NULL)
     return (NULL);
-  strpipe = my_exec_pipe(tab1, path, env, strpipe);
-  my_free_tab(tab1);
-  return (strpipe);
-}
-
-int	main(int argc, char **argv, char **env)
-{
-  char **path;
-  char *pt = "/usr/bin/";
-  char *str;
-
-  path = my_str_to_wordtab(pt);
-  str = my_start_pipe(argv[1], path, env);
-  my_putstr(str);
+  if ((tab = my_str_to_wordtab(cmd)) == NULL)
+    return (NULL);
+  if ((path = my_get_path(chain_env)) == NULL)
+    return (NULL);
+  str = my_exec_pipe(tab, path, tab_env(env), str);
+  my_free_tab(tab);
   my_free_tab(path);
-  free(strpipe);
-  return (0);
+  return (str);
 }
