@@ -5,7 +5,7 @@
 ## Login   <theven_d@epitech.net>
 ##
 ## Started on  Mon Oct 21 22:12:01 2013 theven_d
-## Last update Thu May 15 14:57:27 2014 guenol_v
+## Last update Fri May 16 16:06:41 2014 guenol_v
 ##
 
 NAME	=	42sh
@@ -18,7 +18,6 @@ SRC	=	sources/main.c \
 		sources/verif_syntax.c \
 		sources/check_syntax.c \
 		sources/lexeme_in_list.c \
-		sources/my_tri_functions.c \
 
 OBJ	=	$(SRC:.c=.o)
 
