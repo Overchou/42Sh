@@ -5,7 +5,7 @@
 ** Login   <theven_d@epitech.net>
 ** 
 ** Started on  Fri Dec  6 22:47:59 2013 theven_d
-** Last update Fri May 16 14:36:47 2014 theven_d
+** Last update Mon May 19 18:01:34 2014 theven_d
 */
 
 
@@ -35,7 +35,7 @@ void    my_aff_env(t_env *env);
 int	my_strcmpenv(char *valenv, char*str);
 int	my_check_str(char val, char *str);
 int     check_cmd(char *buffer, t_env *env);
-int     my_setenv(char *str, t_env *env);
+t_env   *my_setenv(char *str, t_env *env);
 int	my_unsetenv(t_env *env, char *cmd);
 int	my_fork(char *, t_env *env);
 int     my_nncmp(char *s1, char *s2, int i);
@@ -45,6 +45,7 @@ int	my_putstr(char *str);
 int	my_strlen(char *str);
 int	my_printf(char *, ...);
 int	my_getnbr(char *str);
+char    *my_epur_str(char *epur, int len);
 char    *my_str_capitalize(char *str);
 char	*my_strcpy(char	*in, char *str);
 char	*my_strdupcpy(char *str);

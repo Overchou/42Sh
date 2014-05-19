@@ -5,7 +5,7 @@
 ** Login   <theven_d@epitech.net>
 ** 
 ** Started on  Mon Apr 14 11:38:58 2014 theven_d
-** Last update Fri May 16 15:39:48 2014 theven_d
+** Last update Fri May 16 19:29:00 2014 theven_d
 */
 
 #include <sys/types.h>
@@ -97,6 +97,7 @@ static int	my_loop(char **env)
       buffer = my_get_line('\n', &a);
       if (a == 0 || a == -1)
 	return (-1);
+      buffer = my_epur_str(buffer, a);
       if (buffer != NULL && a != 1)
 	check_cmd(buffer, chain_env);
       a = 0;

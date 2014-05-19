@@ -5,7 +5,7 @@
 ## Login   <theven_d@epitech.net>
 ## 
 ## Started on  Mon Oct 21 22:12:01 2013 theven_d
-## Last update Fri May 16 14:45:55 2014 theven_d
+## Last update Fri May 16 17:57:10 2014 theven_d
 ##
 
 NAME	= mysh
@@ -32,15 +32,15 @@ CFLAGS	+= -L ./lib -lmy
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	make re -C lib/
+#	make re -C lib/
 	$(CC) -o $(NAME) $(OBJS) $(CFLAGS)
 
 clean:
-	make clean -C lib/
+#	make clean -C lib/
 	$(RM) $(OBJS)
 
 fclean: clean
-	make fclean -C lib/
+#	make fclean -C lib/
 	$(RM) $(NAME)
 
 re: fclean all

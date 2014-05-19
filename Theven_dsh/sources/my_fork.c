@@ -5,7 +5,7 @@
 ** Login   <theven_d@epitech.net>
 ** 
 ** Started on  Wed Mar  5 15:32:04 2014 theven_d
-** Last update Fri May 16 15:40:25 2014 theven_d
+** Last update Fri May 16 18:04:19 2014 theven_d
 */
 
 #include <unistd.h>
@@ -52,6 +52,8 @@ char    *my_check_access(char *arg, char **path)
 
   i = 0;
   check = 0;
+  if ((check = access(arg, F_OK)) == 0)
+    return (arg);
   while (path[i] != NULL)
     {
       recup = concat_path(path[i], arg);

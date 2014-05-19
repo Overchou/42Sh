@@ -5,7 +5,7 @@
 ** Login   <theven_d@epitech.net>
 ** 
 ** Started on  Sat Apr 26 16:39:35 2014 theven_d
-** Last update Fri May 16 15:39:41 2014 theven_d
+** Last update Mon May 19 17:54:05 2014 theven_d
 */
 
 #include <stdlib.h>
@@ -37,12 +37,20 @@ char	*my_cut_chain(char *str)
 int	check_cmd(char *buffer, t_env *chain_env)
 {
   char	*tmp;
+  int	i;
 
   tmp = my_cut_chain(buffer);
   if (my_nncmp(buffer, "unsetenv", 0) == 0)
     my_unsetenv(chain_env, tmp);
   else if (my_nncmp(buffer, "setenv", 0) == 0)
-    my_setenv(tmp, chain_env);
+    {
+      if (chain_env == NULL)
+	my_putstr("NULL\n");
+      chain_env =  my_setenv(tmp, chain_env);
+      my_putchar('a');
+      my_printf("chain_env->pos = %d\n", chain_env->pos);
+      my_putchar('b');
+    }
   else if (my_nncmp(buffer, "env", 0) == 0)
     my_aff_env(chain_env);
   else
