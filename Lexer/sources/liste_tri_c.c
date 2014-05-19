@@ -5,7 +5,7 @@
 ** Login   <besnie_b@epitech.net>
 **
 ** Started on  Thu Apr 17 18:48:25 2014 besnie_b
-** Last update Fri May 16 15:18:23 2014 besnie_b
+** Last update Mon May 19 14:45:40 2014 besnie_b
 */
 
 #include <stdlib.h>
@@ -43,7 +43,7 @@ t_list   *tlist_append(t_list *p_list, char *data, int type)
 
   if (p_list != NULL)
     {
-      p_new = malloc(sizeof (*p_new));
+      p_new = malloc(sizeof(*p_new));
       if (p_new == NULL)
         return (0);
       if (p_new != NULL)

@@ -5,7 +5,7 @@
 ** Login   <besnie_b@epitech.net>
 **
 ** Started on  Thu Apr 24 10:56:12 2014 besnie_b
-** Last update Fri May 16 15:30:47 2014 guenol_v
+** Last update Mon May 19 15:03:24 2014 besnie_b
 */
 
 #include <stdlib.h>
@@ -60,4 +60,29 @@ void	node_delete2(t_list *p_list, t_node *p_tmp)
       p_tmp->p_prev->p_nx1 = p_tmp->p_nx1;
     }
   p_list->length--;
+}
+
+/*
+** Prend en paramètre une node et renvoie un clone
+*/
+
+t_node	*tnode_dup(t_node *p_node)
+{
+  t_node *p_dup;
+
+  if (p_node->data != NULL)
+    {
+      if ((p_dup = malloc(sizeof(*p_dup))) == NULL)
+	return (0);
+      if (p_dup != NULL)
+	{
+	  p_dup->data = p_node->data;
+	  p_dup->type = p_node->type;
+	  p_dup->p_nx1 = NULL;
+	  p_dup->p_nx2 = NULL;
+	  p_dup->p_prev = NULL;
+	}
+      return (p_dup);
+    }
+  return (NULL);
 }
