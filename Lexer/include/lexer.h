@@ -5,7 +5,7 @@
 ** Login   <besnie_b@epitech.net>
 **
 ** Started on  Thu Apr 17 19:07:26 2014 besnie_b
-** Last update Mon May 19 21:05:22 2014 guenol_v
+** Last update Tue May 20 15:40:24 2014 besnie_b
 */
 
 #ifndef LEXER_H__
@@ -15,6 +15,7 @@ typedef struct node
 {
   char	*data;
   int	type;
+  int	exec;
   struct node *p_prev;
   struct node *p_nx1;
   struct node *p_nx2;
