@@ -5,7 +5,7 @@
 ** Login   <besnie_b@epitech.net>
 **
 ** Started on  Sat Apr 19 15:06:28 2014 besnie_b
-** Last update Fri May 16 14:20:23 2014 besnie_b
+** Last update Mon May 19 15:12:54 2014 besnie_b
 */
 
 #include <stdlib.h>
@@ -44,7 +44,7 @@ int	det_lexeme(char	*str, int i)
 {
   if (str[i] != ' ' && str[i] != '\t' && str[i] != 0)
     {
-      if (str[i] == '|' || (str[i] == '&' && str[i + 1] == '&'))
+      if (str[i] == '|' || str[i] == '&')
 	return (1);
       else if (str[i] == '>' || str[i] == '<')
 	return (2);
@@ -52,7 +52,7 @@ int	det_lexeme(char	*str, int i)
 	return (3);
       else if (str[i] == ';')
 	return (4);
-      else if (str[i] != '|' && str[i + 1] != '&')
+      else if (str[i] != '|' && str[i] != '&')
 	return (5);
     }
   return (0);
