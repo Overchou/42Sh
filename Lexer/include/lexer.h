@@ -5,7 +5,7 @@
 ** Login   <besnie_b@epitech.net>
 **
 ** Started on  Thu Apr 17 19:07:26 2014 besnie_b
-** Last update Mon May 19 21:05:22 2014 guenol_v
+** Last update Tue May 20 16:26:15 2014 guenol_v
 */
 
 #ifndef LEXER_H__
@@ -79,11 +79,15 @@ t_list  *my_prio(t_list *, t_node *);
 int	verif_prio(t_node *);
 int	my_db_verif(t_node *plist);
 t_node	*my_other_prio(t_node *plist, t_node *next);
-t_node  *my_prio_str(t_node *tree);
 
 /*
 ** my_tri_functions.c
 */
-t_node  *my_exec_prio(t_node *plist, int a, t_node *tree);
+t_node  *my_exec_prio(t_node *plist, t_node *tree);
+
+/*
+** my_start_tree.c
+*/
+t_node  *my_construct(t_node *tree, t_node *plist);
 
 #endif /* LEXER_H__ */
