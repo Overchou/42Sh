@@ -5,7 +5,7 @@
 ** Login   <besnie_b@epitech.net>
 **
 ** Started on  Thu Apr 17 18:48:25 2014 besnie_b
-** Last update Mon May 19 14:45:40 2014 besnie_b
+** Last update Tue May 20 15:43:02 2014 besnie_b
 */
 
 #include <stdlib.h>
@@ -50,7 +50,8 @@ t_list   *tlist_append(t_list *p_list, char *data, int type)
         {
           p_new->data = data;
 	  p_new->type = type;
-          p_new->p_nx1 = NULL;
+          p_new->exec = 0;
+	  p_new->p_nx1 = NULL;
 	  p_new->p_nx2 = NULL;
           p_list = tlist_append2(p_list, p_new);
           p_list->length++;
@@ -89,7 +90,8 @@ void    tlist_display(t_list *p_list)
       p_tmp = p_list->p_start;
       while (p_tmp != NULL)
         {
-          printf("%s -> ", p_tmp->data);
+          printf("%s(%d, %d) -> ", p_tmp->data, 
+		 p_tmp->type, p_tmp->exec);
 	  p_tmp = p_tmp->p_nx1;
         }
     }
