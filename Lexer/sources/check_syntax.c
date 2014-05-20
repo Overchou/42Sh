@@ -5,7 +5,7 @@
 ** Login   <besnie_b@epitech.net>
 ** 
 ** Started on  Thu May  8 15:48:14 2014 besnie_b
-** Last update Fri May 16 14:19:02 2014 besnie_b
+** Last update Sat May 17 15:20:14 2014 besnie_b
 */
 
 #include <string.h>
@@ -37,8 +37,6 @@ int	check_op(char *str)
   else if (my_strcmp_strict(str, "||") == 0)
     return (0);
   else if (my_strcmp_strict(str, "|") == 0)
-    return (0);
-  else if (my_strcmp_strict(str, "&") == 0)
     return (0);
   return (-1);
 }
