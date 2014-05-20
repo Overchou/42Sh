@@ -5,7 +5,7 @@
 ** Login   <besnie_b@epitech.net>
 **
 ** Started on  Mon May  5 15:03:00 2014 besnie_b
-** Last update Fri May 16 14:22:48 2014 besnie_b
+** Last update Tue May 20 15:30:22 2014 besnie_b
 */
 
 #include <stdlib.h>
@@ -93,7 +93,7 @@ int     my_sec_word_in_list(char *str, int i, t_list *list)
   while (str[i] != 0
 	 && (str[i] != '|' && str[i] != '(' && str[i] != ')'
 	     && str[i] != '>' && str[i] != '<' && str[i] != ';'
-	     && str[i + 1] != '&'))
+	     && str[i] != '&'))
     {
       len++;
       i++;
@@ -105,7 +105,7 @@ int     my_sec_word_in_list(char *str, int i, t_list *list)
   while (str[i] != 0
          && (str[i] != '|' && str[i] != '(' && str[i] != ')'
              && str[i] != '>' && str[i] != '<' && str[i] != ';'
-             && str[i + 1] != '&'))
+             && str[i] != '&'))
     tmp[k++] = str[i++];
   tmp[len] = 0;
   tlist_append(list, tmp, 0);
