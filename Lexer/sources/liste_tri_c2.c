@@ -5,7 +5,7 @@
 ** Login   <besnie_b@epitech.net>
 **
 ** Started on  Thu Apr 24 10:56:12 2014 besnie_b
-** Last update Mon May 19 15:03:24 2014 besnie_b
+** Last update Wed May 21 16:43:49 2014 guenol_v
 */
 
 #include <stdlib.h>
@@ -68,21 +68,18 @@ void	node_delete2(t_list *p_list, t_node *p_tmp)
 
 t_node	*tnode_dup(t_node *p_node)
 {
-  t_node *p_dup;
+  t_node	*p_cpy;
 
-  if (p_node->data != NULL)
+  p_cpy = NULL;
+  if ((p_cpy = malloc(sizeof(*p_cpy))) == NULL)
+    return (0);
+  if (p_cpy != NULL)
     {
-      if ((p_dup = malloc(sizeof(*p_dup))) == NULL)
-	return (0);
-      if (p_dup != NULL)
-	{
-	  p_dup->data = p_node->data;
-	  p_dup->type = p_node->type;
-	  p_dup->p_nx1 = NULL;
-	  p_dup->p_nx2 = NULL;
-	  p_dup->p_prev = NULL;
-	}
-      return (p_dup);
+      p_cpy->data = p_node->data;
+      p_cpy->type = p_node->type;
+      p_cpy->p_nx1 = NULL;
+      p_cpy->p_nx2 = NULL;
+      p_cpy->p_prev = NULL;
     }
-  return (NULL);
+  return (p_cpy);
 }
