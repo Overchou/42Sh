@@ -5,7 +5,7 @@
 ** Login   <guenol_v@epitech.net>
 ** 
 ** Started on  Tue May 13 14:46:02 2014 guenol_v
-** Last update Wed May 21 16:28:54 2014 guenol_v
+** Last update Thu May 22 19:31:32 2014 guenol_v
 */
 
 #include <stdlib.h>
@@ -39,25 +39,23 @@ t_node	*my_new_tree(t_node *plist, t_node *tree, int a)
 t_node	*my_exec_prio(t_node *plist, t_node *tree)
 {
   int	a;
-  t_node	*new_ope;
-  t_node	*new_node_next;
   t_node	*new_tree;
 
   if ((a = verif_prio(plist)) == 0)
     return (tree);
-  my_printf("a = %d\n", a);
   if (a > verif_prio(tree))
     {
+      tree->p_prev = tnode_dup(plist->p_nx1);
+      tree->p_prev->p_nx1 = tree;
+      /* verifier le nouvel arbre */
       new_tree = my_new_tree(plist, tree, a);
-      new_tree->p_nx2 = tree->p_nx2;
+
       tree->p_nx2 = new_tree;
+      tree->p_nx2->p_prev = tree;
     }
-  else
-    {
-      new_ope = tnode_dup(plist);
-      new_node_next = tnode_dup(plist->p_nx1);
-      new_ope->p_nx1 = new_node_next;
-      tree->p_nx1 = new_ope;
-    }
+  tree->p_prev = tnode_dup(plist);
+  tree->p_prev->p_nx1 = tree;
+  tree = tree->p_prev;
+  tree->p_nx2 = tnode_dup(plist->p_nx1);
   return (tree);
 }

@@ -5,7 +5,7 @@
 ** Login   <besnie_b@epitech.net>
 ** 
 ** Started on  Sat Apr 19 15:02:31 2014 besnie_b
-** Last update Fri May 16 16:13:57 2014 guenol_v
+** Last update Thu May 22 18:41:16 2014 guenol_v
 */
 
 #include "lexer.h"
@@ -24,6 +24,7 @@ int	main(int ac, char **av)
   if (my_verif_syntax(list) == -1)
     return (0);
   p_list = list->p_start;
-  list = my_prio(list, p_list);
+  p_list = my_prio(p_list);
+  my_parse_tree(p_list);
   return (0);
 }

@@ -5,7 +5,7 @@
 ## Login   <theven_d@epitech.net>
 ##
 ## Started on  Mon Oct 21 22:12:01 2013 theven_d
-## Last update Tue May 20 16:14:18 2014 guenol_v
+## Last update Thu May 22 18:10:06 2014 guenol_v
 ##
 
 NAME	=	42sh
@@ -20,10 +20,11 @@ SRC	=	sources/main.c \
 		sources/lexeme_in_list.c \
 		sources/my_tri_functions.c \
 		sources/my_start_tree.c \
+		../Parser/my_road_tree.c \
 
 OBJ	=	$(SRC:.c=.o)
 
-CC	=	cc
+CC	=	gcc -g
 
 RM	=	rm -f
 

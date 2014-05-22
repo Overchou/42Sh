@@ -5,7 +5,7 @@
 ** Login   <guenol_v@epitech.net>
 **
 ** Started on  Tue Apr 22 15:29:26 2014 guenol_v
-** Last update Wed May 21 17:06:26 2014 guenol_v
+** Last update Thu May 22 18:40:52 2014 guenol_v
 */
 
 #include <stdlib.h>
@@ -56,7 +56,7 @@ int	verif_prio(t_node *plist)
   return (a);
 }
 
-t_list	*my_prio(t_list *list, t_node *plist)
+t_node	*my_prio(t_node *plist)
 {
   t_node	*tree;
 
@@ -66,8 +66,8 @@ t_list	*my_prio(t_list *list, t_node *plist)
       if (tree == NULL && verif_prio(plist) != 0)
 	tree = my_construct(tree, plist);
       else if ((verif_str(plist) == 0) && tree != NULL)
-	my_exec_prio(plist, tree);
+	tree = my_exec_prio(plist, tree);
       plist = plist->p_nx1;
     }
-  return (list);
+  return (tree);
 }

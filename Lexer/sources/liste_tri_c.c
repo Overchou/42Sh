@@ -5,7 +5,7 @@
 ** Login   <besnie_b@epitech.net>
 **
 ** Started on  Thu Apr 17 18:48:25 2014 besnie_b
-** Last update Tue May 20 15:43:02 2014 besnie_b
+** Last update Thu May 22 19:44:00 2014 guenol_v
 */
 
 #include <stdlib.h>
@@ -90,7 +90,7 @@ void    tlist_display(t_list *p_list)
       p_tmp = p_list->p_start;
       while (p_tmp != NULL)
         {
-          printf("%s(%d, %d) -> ", p_tmp->data, 
+          printf("%s(%d, %d) -> ", p_tmp->data,
 		 p_tmp->type, p_tmp->exec);
 	  p_tmp = p_tmp->p_nx1;
         }
