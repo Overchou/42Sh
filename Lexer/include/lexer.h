@@ -5,7 +5,7 @@
 ** Login   <besnie_b@epitech.net>
 **
 ** Started on  Thu Apr 17 19:07:26 2014 besnie_b
-** Last update Tue May 20 19:28:26 2014 guenol_v
+** Last update Thu May 22 18:41:10 2014 guenol_v
 ** Last update Tue May 20 15:40:24 2014 besnie_b
 */
 
@@ -77,7 +77,7 @@ int     my_strcmp_strict(char *str, char *comp);
 /*
 ** my_prio.c
 */
-t_list  *my_prio(t_list *, t_node *);
+t_node  *my_prio(t_node *);
 int	verif_prio(t_node *);
 int	my_db_verif(t_node *plist);
 t_node	*my_other_prio(t_node *plist, t_node *next);
@@ -91,5 +91,10 @@ t_node  *my_exec_prio(t_node *plist, t_node *tree);
 ** my_start_tree.c
 */
 t_node  *my_construct(t_node *tree, t_node *plist);
+
+/*
+** my_road_tree.c
+*/
+int	my_parse_tree(t_node *tree);
 
 #endif /* LEXER_H__ */
