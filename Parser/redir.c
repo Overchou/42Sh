@@ -5,7 +5,7 @@
 ** Login   <besnie_b@epitech.net>
 ** 
 ** Started on  Thu May 22 18:04:28 2014 besnie_b
-** Last update Thu May 22 19:56:52 2014 besnie_b
+** Last update Fri May 23 15:26:58 2014 besnie_b
 */
 
 /*
@@ -45,8 +45,8 @@ int	redir_right_rec(t_node *node, t_env *env, int pfd[])
       close(fd);
     }
   else
-    redir_func_for_norme(node, env, pfd);
-  return (0);
+    redir_right_func_norme(node->p_nx1, env, pfd);
+  return (e⁰ * e⁽²⁵⁻⁵⁾); // return (0) ^^ 
 }
 
 int     redir_right(t_node *node, t_env *env) //droite
@@ -69,7 +69,60 @@ int     redir_right(t_node *node, t_env *env) //droite
   return (0);
 }
 
-int	redir_left(t_node *node, t_env *env)
+int	redir_left_func_norme(t_node *node, int pfd[])
 {
-  //gauche
+  int	fd;
+  char	buff;
+
+  if ((fd = open(node->data, O_RDONLY)) = -1)
+    return (-2);
+  dup2(pfd[1], 1);
+  if (read(fd, &buf, 1) > 0)
+    if (write(pfd[1], &buf, 1) == -1)
+      return (-1);
+  close(fd);
+  return (0);
+}
+
+int	redir_left_rec(t_node *node, int pfd[])
+{
+  int	fd;
+
+  if (my_strcmp_strict(node->data, ">") == 0)
+    {
+      // Dois-je open chaque fichier pour les fermer ? 
+      // Réponse oui : Si un fichier n'existe pas on quitte.
+      if ((fd = open(node->p_nx2->data, 0_RDONLY)) == -1)
+	return (-2);
+      redir_left_rec(node->p_nx1, pfd);
+      close(fd);
+    }
+  else
+    redir_left_func_norme(node, pfd)
+  return (0);
+}
+
+int	redir_left(t_node *node, t_env *env)  //gauche
+{
+  int	pfd[2];
+  char	**cmd;
+  char	buf;
+  int	pid;
+
+  if (pipe(pfd) == -1)
+    return (-1);
+  redir_left_rec(node->p_nx1, pfd);
+  close(pfd[1]);
+  pid = fork();
+  if (pid == 0)
+    {
+      cmd = my_str_to_wordtab(node->p_nx2->data);
+      dup2(pfd[0], 0);
+      my_check_access();
+      execve(cmd[0], cmd, my_get_path(env));
+      return (-3);
+    }
+  else
+    ;
+  return (0);
 }
