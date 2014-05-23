@@ -5,10 +5,12 @@
 ** Login   <theven_d@epitech.net>
 ** 
 ** Started on  Sat Apr 26 16:39:35 2014 theven_d
-** Last update Wed May 21 22:01:14 2014 theven_d
+** Last update Fri May 23 16:12:00 2014 theven_d
 */
 
 #include <stdlib.h>
+#include "builtin.h"
+#include "env.h"
 #include "my.h"
 
 char	*my_cut_chain(char *str)
@@ -34,10 +36,9 @@ char	*my_cut_chain(char *str)
   return (recup);
 }
 
-int	check_cmd(char *buffer, t_env *chain_env)
+int	check_builtin(char *buffer, t_env *chain_env)
 {
   char	*tmp;
-  int	i;
 
   tmp = my_cut_chain(buffer);
   if (my_nncmp(buffer, "unsetenv", 0) == 0)
@@ -46,7 +47,5 @@ int	check_cmd(char *buffer, t_env *chain_env)
     chain_env =  my_setenv(tmp, chain_env);
   else if (my_nncmp(buffer, "env", 0) == 0)
     my_aff_env(chain_env);
-  else
-    my_fork(buffer, chain_env);
   return (0);
 }

@@ -5,5 +5,26 @@
 ** Login   <theven_d@epitech.net>
 ** 
 ** Started on  Tue May 20 16:00:57 2014 theven_d
-** Last update Tue May 20 16:00:57 2014 theven_d
+** Last update Fri May 23 15:18:08 2014 theven_d
 */
+
+#ifndef ENV_H_
+# define ENV_H_
+
+typedef struct s_env
+{
+  int   pos;
+  char  *value;
+  struct s_env *next;
+}t_env;
+
+typedef struct s_chain
+{
+  t_env *begin;
+  t_env *end;
+}t_chain;
+
+t_env   *my_env_in_list(char **);
+int     my_strcmpenv(char *, char *);
+
+#endif
