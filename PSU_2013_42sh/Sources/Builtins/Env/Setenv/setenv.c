@@ -5,11 +5,12 @@
 ** Login   <theven_d@epitech.net>
 ** 
 ** Started on  Fri Apr 25 17:29:51 2014 theven_d
-** Last update Thu May 22 20:44:40 2014 theven_d
+** Last update Fri May 23 15:38:12 2014 theven_d
 */
 
 #include <string.h>
 #include <stdlib.h>
+#include "env.h"
 #include "my.h"
 
 char	*malloc_res(int check, char *name, char *value)
@@ -19,8 +20,8 @@ char	*malloc_res(int check, char *name, char *value)
   int	i;
   char	*res;
 
-  lenname = my_strlen(name);
-  lenval = my_strlen(value);
+  lenname = strlen(name);
+  lenval = strlen(value);
   i = lenname + lenval + 1;
   if (check == 0)
     i += 1;
@@ -52,7 +53,6 @@ char	*concat_setenv(char *name, char *value)
   while (value[check] != '\0')
     res[i++] = value[check++];
   res[i] = '\0';
-  my_printf("%s\n", res);
   return (res);
 }
 
@@ -112,12 +112,11 @@ t_env	*my_setenv(char *str, t_env *env)
   if (env == NULL)
     {
       if ((env = malloc(sizeof(*env))) == NULL)
-	return (-1);
+	return (NULL);
       env->pos = 0;
       if ((env->value = concat_setenv(set[0], set[1])) == NULL)
-	return (-1);
+	return (NULL);
       env->next = NULL;
-      printf("setenv->pos = %d\n", env->pos);
     }
   else
     my_add(tmp, set);

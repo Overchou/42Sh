@@ -5,5 +5,17 @@
 ** Login   <theven_d@epitech.net>
 ** 
 ** Started on  Tue May 20 16:01:23 2014 theven_d
-** Last update Tue May 20 16:01:24 2014 theven_d
+** Last update Wed May 21 19:18:09 2014 theven_d
 */
+
+#include "env.h"
+
+#ifndef MAIN_H_
+# define MAIN_H_
+
+#define SIZE	5
+
+char    *my_get_line(char stop, int *a);
+void    our_magic_prompt(t_env *env);
+
+#endif
