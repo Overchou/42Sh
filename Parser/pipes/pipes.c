@@ -5,7 +5,7 @@
 ** Login   <besnie_b@epitech.net>
 ** 
 ** Started on  Wed May 21 17:47:32 2014 besnie_b
-** Last update Thu May 22 17:52:54 2014 besnie_b
+** Last update Thu May 22 19:56:12 2014 besnie_b
 */
 
 #include <unistd.h>
@@ -17,7 +17,7 @@ int	pipe_counter(t_node *p_node)
 
   i = 1;
   tmp = p_node->p_nx1;
-  while (my_strcmp_strict(tmp->data, "|"))
+  while (my_strcmp_strict(tmp->data, "|") != -1)
     {
       i++;
       tmp = tmp->p_nx1;
@@ -51,7 +51,8 @@ int	my_last_son(int pfd[], t_node *node, t_env *env)
       pid = fork();
       if (pid == 0)
 	{
-	  cmd = my_str_to_wordtab();
+	  cmd = my_str_to_wordtab(node->data);
+	  close(pfd[0]);
 	  dup2(pdf[1], 1);
 	  my_check_access(cmd[0], 0);
 	  execve(cmd[0], cmd, env);
@@ -70,7 +71,7 @@ int	my_next_son(int pfd[], int ncmd, t_node *node, t_env *env)
   char	**cmd;
 
   ncmd--;
-  cmd = my_str_to_wordtab(p_node->p_nx2);
+  cmd = my_str_to_wordtab(p_node->p_nx2->data);
   if (ncmd > 1)
     {
       my_next_son(pfd, ncmd, node->p_nx1, env);
@@ -82,6 +83,7 @@ int	my_next_son(int pfd[], int ncmd, t_node *node, t_env *env)
       my_exec_son(pfd, node->p_nx2, env);
     }
   my_free_tab(cmd);
+  return (0);
 }
 
 int	my_first_son(int pfd[], int ncmd, t_node *node, t_env *t_env)
@@ -93,7 +95,7 @@ int	my_first_son(int pfd[], int ncmd, t_node *node, t_env *t_env)
   pid = fork();
   if (pid == 0)
     {
-      cmd = my_str_to_wordtab(p_node->p_nx2);
+      cmd = my_str_to_wordtab(p_node->p_nx2->data);
       my_check_access(cmd[0], my_get_path(env));
       my_next_son(pfd, ncmd, node->p_nx1, t_env);
       dup2(pfd[0], 0);
@@ -103,6 +105,7 @@ int	my_first_son(int pfd[], int ncmd, t_node *node, t_env *t_env)
   else
     ;
   my_free_tab(cmd);
+  return (0);
 }
 
 int	mpipes_func(t_node *p_node, t_env *env)

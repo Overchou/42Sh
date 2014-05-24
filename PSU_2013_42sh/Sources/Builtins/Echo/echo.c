@@ -5,12 +5,13 @@
 ** Login   <auffra_a@epitech.net>
 ** 
 ** Started on  Mon Apr 21 10:49:59 2014 auffra_a
-** Last update Sat May 24 16:06:29 2014 auffra_a
+** Last update Sat May 24 18:57:12 2014 theven_d
 */
 
 #include <stdio.h>
 #include <stdlib.h>
 #include "echo.h"
+#include "my.h"
 
 int	echo_e(char *s, int i)
 {
@@ -84,6 +85,7 @@ void	builtin_echo(char *s)
 {
   char **echo;
 
+  echo = NULL;
   if (s != NULL)
     echo_wheel(echo, 0, 0, s);
   else

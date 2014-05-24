@@ -5,7 +5,7 @@
 ** Login   <theven_d@epitech.net>
 ** 
 ** Started on  Fri Apr 25 17:29:51 2014 theven_d
-** Last update Mon May 19 18:00:39 2014 theven_d
+** Last update Thu May 22 20:44:40 2014 theven_d
 */
 
 #include <string.h>
@@ -111,7 +111,6 @@ t_env	*my_setenv(char *str, t_env *env)
     return (NULL);
   if (env == NULL)
     {
-      my_putstr("lol\n");
       if ((env = malloc(sizeof(*env))) == NULL)
 	return (-1);
       env->pos = 0;

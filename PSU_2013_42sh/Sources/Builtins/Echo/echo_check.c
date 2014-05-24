@@ -5,12 +5,13 @@
 ** Login   <auffra_a@epitech.net>
 ** 
 ** Started on  Fri May 16 14:47:36 2014 auffra_a
-** Last update Sat May 24 15:50:38 2014 auffra_a
+** Last update Sat May 24 18:55:27 2014 theven_d
 */
 
 #include <stdio.h>
 #include <stdlib.h>
 #include "echo.h"
+#include "my.h"
 
 int     check_nb_octal(char *s, int i1, int i2)
 {
