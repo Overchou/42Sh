@@ -5,56 +5,14 @@
 ** Login   <theven_d@epitech.net>
 ** 
 ** Started on  Fri Apr 25 17:29:51 2014 theven_d
-** Last update Fri May 23 15:38:12 2014 theven_d
+** Last update Sat May 24 14:55:37 2014 theven_d
 */
 
 #include <string.h>
 #include <stdlib.h>
 #include "env.h"
+#include "setenv.h"
 #include "my.h"
-
-char	*malloc_res(int check, char *name, char *value)
-{
-  int	lenname;
-  int	lenval;
-  int	i;
-  char	*res;
-
-  lenname = strlen(name);
-  lenval = strlen(value);
-  i = lenname + lenval + 1;
-  if (check == 0)
-    i += 1;
-  if ((res = malloc(sizeof(*res) * i)) == NULL)
-    return (NULL);
-  return (res);
-}
-
-char	*concat_setenv(char *name, char *value)
-{
-  char	*res;
-  int	check;
-  int	i;
-
-  check = 0;
-  i = 0;
-  if (value[0] == '=' || my_check_str('=', name) == 1)
-    check = 1;
-  if ((res = malloc_res(check, name, value)) == NULL)
-    return (NULL);
-  while (name[i] != '\0')
-    {
-      res[i] = name[i];
-      i++;
-    }
-  if (check == 0)
-    res[i++] = '=';
-  check = 0;
-  while (value[check] != '\0')
-    res[i++] = value[check++];
-  res[i] = '\0';
-  return (res);
-}
 
 int	my_new_add(char **set, t_env *tmp)
 {
@@ -70,11 +28,13 @@ int	my_new_add(char **set, t_env *tmp)
   return (0);
 }
 
-int	my_add(t_env *tmp, char **set)
+int	my_add(t_env *env, char **set)
 {
   int	check;
   int	i;
+  t_env	*tmp;
 
+  tmp = env;
   i = 0;
   check = 1;
   if (set[2] != NULL)
@@ -95,30 +55,32 @@ int	my_add(t_env *tmp, char **set)
   return (0);
 }
 
+t_env	*my_add_in_null_env(t_env *env, char **set)
+{
+  if ((env = malloc(sizeof(*env))) == NULL)
+    return (NULL);
+  env->pos = 0;
+  if ((env->value = concat_setenv(set[0], set[1])) == NULL)
+    return (NULL);
+  env->next = NULL;
+  return (env);
+}
+
 t_env	*my_setenv(char *str, t_env *env)
 {
   char	**set;
-  t_env	*tmp;
 
-  tmp = env;
   if (str == NULL || str[0] == '\0')
     return (NULL);
-  if ((set = my_str_to_wordtab(str)) == NULL)
-    return (NULL);
-  if (set[1] == NULL)
-    return (NULL);
-  if ((set[0] = my_str_capitalize(set[0])) == NULL)
-    return (NULL);
-  if (env == NULL)
+  if (((set = my_str_to_wordtab(str)) == NULL) || ((set[1] == NULL)) || (((set[0] = my_str_capitalize(set[0])) == NULL)))
     {
-      if ((env = malloc(sizeof(*env))) == NULL)
-	return (NULL);
-      env->pos = 0;
-      if ((env->value = concat_setenv(set[0], set[1])) == NULL)
-	return (NULL);
-      env->next = NULL;
+      my_free_tab(set);
+      return (NULL);  
     }
+  if (env == NULL)
+    env = my_add_in_null_env(env, set);
   else
-    my_add(tmp, set);
- return (env);
+    my_add(env, set);
+  my_free_tab(set);
+  return (env);
 }

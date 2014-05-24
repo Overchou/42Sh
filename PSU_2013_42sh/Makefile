@@ -5,7 +5,7 @@
 ## Login   <theven_d@epitech.net>
 ## 
 ## Started on  Tue May 20 15:47:47 2014 theven_d
-## Last update Fri May 23 15:39:23 2014 theven_d
+## Last update Sat May 24 15:50:28 2014 theven_d
 ##
 
 SOURCES		= Sources/
@@ -42,11 +42,18 @@ NAME		= vegash
 
 CC		= gcc -g
 
-SRCS		= $(SOURCES)$(BUILTINS)$(ENV)$(ENV)env.c \
+SRCS		= ./Lib/my_epur_str.c \
+		  $(SOURCES)$(BUILTINS)$(ENV)$(ENV)env.c \
 		  $(SOURCES)$(BUILTINS)$(ENV)$(ENV)aff_env.c \
 		  $(SOURCES)$(BUILTINS)$(ENV)$(SETENV)setenv.c \
-		  $(SOURCES)$(BUILTINS)$(ENV)$(SETENV)my_strcmpenv.c \
+		  $(SOURCES)$(BUILTINS)$(ENV)$(SETENV)my_setenv_func.c \
 		  $(SOURCES)$(BUILTINS)$(ENV)$(UNSETENV)unsetenv.c \
+		  $(SOURCES)$(BUILTINS)$(CD)cd.c \
+		  $(SOURCES)$(BUILTINS)$(CD)cd_funcs.c \
+		  $(SOURCES)$(BUILTINS)$(CD)cd_lib.c \
+		  $(SOURCES)$(BUILTINS)$(ECHO)echo.c \
+		  $(SOURCES)$(BUILTINS)$(ECHO)echo_calc.c \
+		  $(SOURCES)$(BUILTINS)$(ECHO)echo_check.c \
 		  $(SOURCES)$(BUILTINS)check_builtin.c \
 		  $(SOURCES)$(EXECUTION)my_exec.c \
 		  $(SOURCES)$(FREE_FCT)my_free_env.c \
