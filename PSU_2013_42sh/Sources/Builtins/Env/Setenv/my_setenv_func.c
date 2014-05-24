@@ -5,7 +5,7 @@
 ** Login   <theven_d@epitech.net>
 ** 
 ** Started on  Fri May 16 14:34:16 2014 theven_d
-** Last update Sat May 24 14:41:22 2014 theven_d
+** Last update Sat May 24 16:42:39 2014 theven_d
 */
 
 #include <string.h>
@@ -32,35 +32,11 @@ int	my_strcmpenv(char *valenv, char *str)
   return (0);
 }
 
-char    *malloc_res(int check, char *name, char *value)
+char    *concat(char *name, char *value, char *res, int check)
 {
-  int   lenname;
-  int   lenval;
-  int   i;
-  char  *res;
-
-  lenname = strlen(name);
-  lenval = strlen(value);
-  i = lenname + lenval + 1;
-  if (check == 0)
-    i += 1;
-  if ((res = malloc(sizeof(*res) * i)) == NULL)
-    return (NULL);
-  return (res);
-}
-
-char    *concat_setenv(char *name, char *value)
-{
-  char  *res;
-  int   check;
   int   i;
 
-  check = 0;
   i = 0;
-  if (value[0] == '=' || my_check_str('=', name) == 1)
-    check = 1;
-  if ((res = malloc_res(check, name, value)) == NULL)
-    return (NULL);
   while (name[i] != '\0')
     {
       res[i] = name[i];
@@ -72,5 +48,28 @@ char    *concat_setenv(char *name, char *value)
   while (value[check] != '\0')
     res[i++] = value[check++];
   res[i] = '\0';
+  return (res);
+}
+
+char    *concat_setenv(char *name, char *value)
+{
+  char  *res;
+  int   check;
+  int   lenname;
+  int   lenval;
+  int   i;
+
+  check = 0;
+  i = 0;
+  if (value[0] == '=' || my_check_str('=', name) == 1)
+    check = 1;
+  lenname = strlen(name);
+  lenval = strlen(value);
+  i = lenname + lenval + 1;
+  if (check == 0)
+    i += 1;
+  if ((res = malloc(sizeof(*res) * i)) == NULL)
+    return (NULL);
+  res = concat(name, value, res, check);
   return (res);
 }

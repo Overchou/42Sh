@@ -5,10 +5,11 @@
 ** Login   <theven_d@epitech.net>
 ** 
 ** Started on  Wed Apr 16 17:32:38 2014 theven_d
-** Last update Fri May 23 14:17:56 2014 theven_d
+** Last update Sat May 24 16:38:49 2014 theven_d
 */
 
 #include <stdlib.h>
+#include <string.h>
 #include "env.h"
 #include "my.h"
 

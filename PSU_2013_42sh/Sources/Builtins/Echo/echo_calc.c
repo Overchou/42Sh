@@ -5,11 +5,13 @@
 ** Login   <auffra_a@epitech.net>
 ** 
 ** Started on  Fri May 16 14:46:56 2014 auffra_a
-** Last update Fri May 16 14:47:20 2014 auffra_a
+** Last update Sat May 24 18:54:52 2014 theven_d
 */
 
 #include <stdio.h>
 #include <stdlib.h>
+#include "my.h"
+#include "echo.h"
 
 int     echo_x_nb(char x)
 {

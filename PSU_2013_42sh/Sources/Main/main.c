@@ -5,7 +5,7 @@
 ** Login   <theven_d@epitech.net>
 ** 
 ** Started on  Mon Apr 14 11:38:58 2014 theven_d
-** Last update Sat May 24 10:17:53 2014 theven_d
+** Last update Sat May 24 16:55:59 2014 theven_d
 */
 
 #include <stdlib.h>
@@ -38,6 +38,7 @@ int	my_loop(char **env)
       free(buffer);
     }
   my_free_env(chain_env);
+  free(buffer);
   return (0);
 }
 
