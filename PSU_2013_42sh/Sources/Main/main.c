@@ -5,7 +5,7 @@
 ** Login   <theven_d@epitech.net>
 ** 
 ** Started on  Mon Apr 14 11:38:58 2014 theven_d
-** Last update Fri May 23 18:50:11 2014 theven_d
+** Last update Sat May 24 10:17:53 2014 theven_d
 */
 
 #include <stdlib.h>
@@ -27,7 +27,7 @@ int	my_loop(char **env)
   while (a > 0)
     {
       our_magic_prompt(chain_env);
-      //    my_signal();
+      //my_signal();
       buffer = my_get_line('\n', &a);
       buffer = my_epur_str(buffer, a);
       if (buffer != NULL)

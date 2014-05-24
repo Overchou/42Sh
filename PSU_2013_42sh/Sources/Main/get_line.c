@@ -5,7 +5,7 @@
 ** Login   <theven_d@epitech.net>
 ** 
 ** Started on  Wed May 21 15:13:41 2014 theven_d
-** Last update Thu May 22 20:48:00 2014 theven_d
+** Last update Sat May 24 13:14:29 2014 theven_d
 */
 
 #include <stdlib.h>
@@ -33,7 +33,6 @@ char    *my_concat(char *result, char *recup , int i)
   while (k < i)
     tmp[k++] = recup[j++];
   tmp[k] = '\0';
-  free(result);
   return (tmp);
 }
 

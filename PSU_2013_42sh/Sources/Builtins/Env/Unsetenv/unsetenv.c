@@ -5,7 +5,7 @@
 ** Login   <theven_d@epitech.net>
 ** 
 ** Started on  Fri Apr 18 19:44:42 2014 theven_d
-** Last update Fri May 23 15:42:02 2014 theven_d
+** Last update Fri May 23 23:12:20 2014 theven_d
 */
 
 #include <stdlib.h>
@@ -22,6 +22,7 @@ void	reset_env(t_env *env)
       tmp->pos = tmp->pos - 1;
       tmp = tmp->next;
     }
+  tmp = NULL;
   free(tmp);
 }
 
