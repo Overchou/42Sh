@@ -5,7 +5,7 @@
 ** Login   <theven_d@epitech.net>
 ** 
 ** Started on  Sat Apr 26 16:39:35 2014 theven_d
-** Last update Sat May 24 15:42:26 2014 theven_d
+** Last update Sat May 24 21:07:30 2014 theven_d
 */
 
 #include <stdlib.h>
@@ -48,10 +48,10 @@ int	check_builtin(char *buffer, t_env *chain_env)
   else if (my_nncmp(buffer, "env", 0) == 0)
     my_aff_env(chain_env);
   else if (my_nncmp(buffer, "echo", 0) == 0)
-    chain_env = my_setenv(tmp);
+    builtin_echo(tmp);
   else if (my_nncmp(buffer, "cd", 0) == 0)
-    chain_env = my_setenv(tmp);
-  else if (my_nncmp(buffer, "exit", 0) == 0)
-    chain_env = my_setenv(tmp);
+    chain_env = shell_cd(chain_env, tmp);
+  /*  else if (my_nncmp(buffer, "exit", 0) == 0)
+      chain_env = my_exit(tmp);*/
   return (0);
 }

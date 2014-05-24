@@ -5,26 +5,13 @@
 ** Login   <auffra_a@epitech.net>
 ** 
 ** Started on  Mon Apr 21 10:49:59 2014 auffra_a
-** Last update Fri May 16 14:48:49 2014 auffra_a
+** Last update Sat May 24 18:57:12 2014 theven_d
 */
 
 #include <stdio.h>
 #include <stdlib.h>
-
-char	*my_nncpy(char *s, int x1, int x2)
-{
-  char *str;
-  int i;
-
-  x1--;
-  i = -1;
-  if ((str = malloc(sizeof(*str) * (x2 - x1 + 2))) == NULL)
-    return (0);
-  while (++x1 <= x2)
-    str[++i] = s[x1];
-  str[++i] = NULL;
-  return (str);
-}
+#include "echo.h"
+#include "my.h"
 
 int	echo_e(char *s, int i)
 {
@@ -55,44 +42,52 @@ int	echo_print(char **echo, int i, int e)
 {
   while (echo[++i] != NULL)
     {
-      if (e == 1)
+      if ((my_nncmp(echo[i], "-n", 0) != 0) &&
+	  (my_nncmp(echo[i], "-e", 0) != 0) &&
+	  (my_nncmp(echo[i], "-E", 0) != 0))
 	{
-	  if (echo_e(echo[i], -1) == 1)
-	    return (1);
+	  if (e == 1)
+	    {
+	      if (echo_e(echo[i], -1) == 1)
+		return (1);
+	    }
+	  else
+	    my_printf("%s", echo[i]);
+	  if (echo[i + 1] != NULL)
+	    my_putchar(' ');
 	}
-      else
-	my_printf("%s", echo[i]);
-      if (echo[i + 1] != NULL)
-	my_putchar(' ');
     }
   return (0);
 }
 
-void	builtin_echo(char *s)
+void	echo_wheel(char **echo, int n, int e, char *s)
 {
-  char **echo;
-  int n;
-  int e;
   int i;
 
-  echo = my_str_to_wordtab(s);
-  n = 0;
-  e = 0;
   i = -1;
+  echo = my_str_to_wordtab(s);
   while (echo[++i] != NULL)
     {
       if (my_nncmp(echo[i], "-n", 0) == 0)
 	n = 1;
       if (my_nncmp(echo[i], "-e", 0) == 0)
-	e = 1;
-      if (my_nncmp(echo[i], "-E", 0) == 0)
 	e = 0;
+      if (my_nncmp(echo[i], "-E", 0) == 0)
+	e = 1;
     }
-  i = -1;
-  while (my_nncmp(echo[++i], "-", 0) == 0);
-  i--;
-  echo_print(echo, i, e);
+  echo_print(echo, -1, e);
   if (n == 0)
     my_putchar('\n');
   free(echo);
+}
+
+void	builtin_echo(char *s)
+{
+  char **echo;
+
+  echo = NULL;
+  if (s != NULL)
+    echo_wheel(echo, 0, 0, s);
+  else
+    my_putchar('\n');
 }

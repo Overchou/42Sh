@@ -1,15 +1,11 @@
 /*
-** my_fork.c for minishell in /home/theven_d/rendu/PSU_2013_minishell1/sources
+** my_exec.c for 42sh in /home/theven_d/rendu/42Sh/PSU_2013_42sh/Sources/Execution
 ** 
 ** Made by theven_d
 ** Login   <theven_d@epitech.net>
 ** 
-** Started on  Wed Mar  5 15:32:04 2014 theven_d
-<<<<<<< HEAD
-** Last update Fri May 23 16:19:59 2014 theven_d
-=======
-** Last update Sun May 18 14:45:59 2014 besnie_b
->>>>>>> 18dd06dc0eab7955f9fe62b44fc37dc9ce1c36cd
+** Started on  Sat May 24 18:23:05 2014 theven_d
+** Last update Sat May 24 18:23:08 2014 theven_d
 */
 
 #include <unistd.h>

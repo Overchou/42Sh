@@ -5,7 +5,7 @@
 ## Login   <theven_d@epitech.net>
 ## 
 ## Started on  Mon Oct 21 22:12:01 2013 theven_d
-## Last update Fri May 23 18:47:22 2014 theven_d
+## Last update Sat May 24 16:50:58 2014 theven_d
 ##
 
 NAME	= libmy.a
@@ -18,7 +18,6 @@ SRCS	= my_putchar.c \
 	  my_check_str.c \
 	  my_str_capitalize.c \
 	  my_nncmp.c \
-	  my_strdupcpy.c \
 	  my_free_fct.c \
 	  my_put_nbr.c \
 	  my_putstr.c \

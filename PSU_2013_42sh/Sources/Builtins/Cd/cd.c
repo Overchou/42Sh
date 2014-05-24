@@ -5,7 +5,7 @@
 ** Login   <auffra_a@epitech.net>
 ** 
 ** Started on  Thu May 22 18:11:39 2014 auffra_a
-** Last update Fri May 23 16:49:34 2014 auffra_a
+** Last update Sat May 24 20:44:06 2014 theven_d
 */
 
 #include <unistd.h>
@@ -87,7 +87,6 @@ t_env	*cd_directory(t_env *env, char *directory)
 
 t_env	*shell_cd(t_env *env, char *directory)
 {
-  my_aff_env(env);
   if ((my_nncmp(directory, "..", 0)) == 0)
     env = cd_prev(env);
   else if ((my_nncmp(directory, "-", 0)) == 0)
@@ -95,17 +94,4 @@ t_env	*shell_cd(t_env *env, char *directory)
   else
     env = cd_directory(env, directory);
   return (env);
-}
-
-int	main(int argc, char **argv, char **env)
-{
-  char buffer[5000];
-  t_env *list;
-
-  if (argc == 3)
-    my_printf("%s\nON A PRIS TA MERE EN OTAGE\n", argv[1]);
-  list = my_env_in_list(env);
-  read(0, buffer, 5000);
-  shell_cd(list, buffer);
-  return (0);
 }

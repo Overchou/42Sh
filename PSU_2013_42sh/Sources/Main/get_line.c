@@ -5,19 +5,20 @@
 ** Login   <theven_d@epitech.net>
 ** 
 ** Started on  Wed May 21 15:13:41 2014 theven_d
-** Last update Sat May 24 13:14:29 2014 theven_d
+** Last update Sat May 24 19:01:46 2014 theven_d
 */
 
 #include <stdlib.h>
 #include <unistd.h>
+#include <string.h>
 #include "main.h"
 
-char    *my_concat(char *result, char *recup , int i)
+char    *my_concat(char *result, char *recup, int i)
 {
   char *tmp;
   int   j;
   int   k;
-
+  
   j = 0;
   k = 0;
   if ((tmp = malloc(sizeof(*tmp) * (i + 1))) == NULL)
@@ -33,6 +34,7 @@ char    *my_concat(char *result, char *recup , int i)
   while (k < i)
     tmp[k++] = recup[j++];
   tmp[k] = '\0';
+  free(result);
   return (tmp);
 }
 
@@ -73,8 +75,8 @@ char    *my_get_line(char stop, int *a)
         {
           i = i + b;
           result = my_concat(result , recup, i);
-	  free(recup);
-          return (result);
+          free(recup);
+	  return (result);
         }
       i = i + SIZE;
       result = my_concat(result , recup, i);
