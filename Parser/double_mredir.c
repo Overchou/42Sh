@@ -5,7 +5,7 @@
 ** Login   <besnie_b@epitech.net>
 ** 
 ** Started on  Fri May 23 15:32:00 2014 besnie_b
-** Last update Fri May 23 16:13:22 2014 besnie_b
+** Last update Sat May 24 16:15:46 2014 besnie_b
 */
 
 /*
@@ -15,6 +15,8 @@
 int     func_double_norme(t_node *node, t_env *env, int pfd[])
 {
   char  **cmd;
+  char	*pathcmd;
+  int	pid;
 
   cmd = my_str_to_wordtab(node->data);
   pid = fork();
@@ -22,12 +24,12 @@ int     func_double_norme(t_node *node, t_env *env, int pfd[])
     {
       close(pfd[0]);
       dup2(pfd[1], 1);
-      my_check_access();
-      execve(cmd[0], cmd, env);
+      pathcmd = my_check_access(cmd[0], my_get_path(env));
+      execve(cmd[0], cmd, tab_env(env));
       return (-3);
     }
   else
-    ;
+    wait(&pid);
   return (0);
 }
 
@@ -69,7 +71,61 @@ int	double_redir_right(t_node *node, t_env *env) // droite
   return (0);
 }
 
+int	my_loop_for_dredir(t_node *node, char *rbuff, int pfd[])
+{
+  int	i;
+
+  i = 0;
+  rbuff = get_line('\n', &i);
+  while (my_strcmp_strict(rbuff, node->data) != -1)
+    {
+      i = 0;
+      write(pfd[1], rbuff, strlen(rbuff));
+      rbuff = get_line('\n', &i);
+    }
+  return (0);
+}
+
+int	double_redir_left_rec(t_node *node, t_env *env, int pfd[])
+{
+  char	*rbuff;
+
+  if (my_strcmp_strict(node->p_nx1->data, "<<") == 0)
+    {
+      my_loop_for_dredir(node->p_nx2, rbuff, pfd);
+      double_redir_left_rec(node->p_nx1, env, pfd);
+    }
+  else
+    {
+      my_loop_for_dredir(node->p_nx1, rbuff, pfd);
+      return (0);
+    }
+  return (0);
+}
+
 int	double_redir_left(t_node *node, t_env *env) // gauche
 {
-  
+  int	pfd[2];
+  int	pid;
+  char	**cmd;
+  char	*pathcmd;
+
+  if (pipe(pfd) == -1)
+    return (-1);
+  double_redir_left_rec(node->p_nx1, env, pfd);
+  close(pfd[1]);
+  pid = fork();
+  if (pid == 0)
+    {
+      dup2(pfd[0], 0);
+      cmd = my_str_to_wordtab(node->p_nx2->data);
+      pathcmd = my_check_access(cmd[0], my_get_path(env));
+      execve(pathcmd, cmd, tab_env(env));
+      return (-3);
+    }
+  else
+    wait(&pid);
+  my_free_tab(cmd);
+  close(pfd[0]);
+  return (0);
 }
