@@ -1,54 +1,19 @@
 /*
-** my.h for my in /home/theven_d/rendu/MUL_2013_fdf/header
+** my.h for my in /home/auffra_a/rendu
 ** 
-** Made by theven_d
-** Login   <theven_d@epitech.net>
+** Made by auffra_a
+** Login   <auffra_a@epitech.net>
 ** 
-** Started on  Fri Dec  6 22:47:59 2013 theven_d
-** Last update Mon May 19 18:01:34 2014 theven_d
+** Started on  Thu Oct 10 14:44:08 2013 auffra_a
+** Last update Sat Mar  8 12:38:35 2014 auffra_a
 */
-
 
 #ifndef MY_H_
 # define MY_H_
 
-#define SIZE 5
+void	 my_putchar(char c);
+int	 my_put_nbr(int n);
+void	 my_putstr(char *str);
+int	 my_getnbr(char *str);
 
-typedef struct s_env
-{
-  int   pos;
-  char  *value;
-  struct s_env *next;
-}t_env;
-
-typedef struct s_chain
-{
-  t_env	*begin;
-  t_env	*end;
-}t_chain;
-
-t_env   *my_env_in_list(char **av);
-void	my_signal();
-void	my_putchar(char c);
-void	my_free_tab(char **tab);
-void    my_aff_env(t_env *env);
-int	my_strcmpenv(char *valenv, char*str);
-int	my_check_str(char val, char *str);
-int     check_cmd(char *buffer, t_env *env);
-t_env   *my_setenv(char *str, t_env *env);
-int	my_unsetenv(t_env *env, char *cmd);
-int	my_fork(char *, t_env *env);
-int     my_nncmp(char *s1, char *s2, int i);
-int	my_cmp_str(char *str, char *cmp);
-int     my_check_value(char value, char *str);
-int	my_putstr(char *str);
-int	my_strlen(char *str);
-int	my_printf(char *, ...);
-int	my_getnbr(char *str);
-char    *my_epur_str(char *epur, int len);
-char    *my_str_capitalize(char *str);
-char	*my_strcpy(char	*in, char *str);
-char	*my_strdupcpy(char *str);
-char	**my_str_to_wordtab(char *tab);
-
-#endif /*MY_H_*/
+#endif

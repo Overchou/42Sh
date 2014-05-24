@@ -5,7 +5,7 @@
 ** Login   <besnie_b@epitech.net>
 **
 ** Started on  Thu Apr 17 19:07:26 2014 besnie_b
-** Last update Thu May 22 18:41:10 2014 guenol_v
+** Last update Sat May 24 23:40:58 2014 guenol_v
 ** Last update Tue May 20 15:40:24 2014 besnie_b
 */
 
@@ -85,12 +85,14 @@ t_node	*my_other_prio(t_node *plist, t_node *next);
 /*
 ** my_tri_functions.c
 */
-t_node  *my_exec_prio(t_node *plist, t_node *tree);
+t_node	*my_exec_prio(t_node *plist, t_node *tree);
 
 /*
 ** my_start_tree.c
 */
 t_node  *my_construct(t_node *tree, t_node *plist);
+t_node  *my_construct_branch(t_node *tree, t_node *plist);
+t_node  *my_modif_branch(t_node *tree, t_node *plist);
 
 /*
 ** my_road_tree.c
