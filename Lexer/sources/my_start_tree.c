@@ -5,7 +5,7 @@
 ** Login   <guenol_v@epitech.net>
 **
 ** Started on  Tue May 20 16:07:34 2014 guenol_v
-** Last update Sun May 25 22:15:40 2014 guenol_v
+** Last update Sun May 25 22:36:40 2014 guenol_v
 */
 
 #include <stdlib.h>
@@ -51,6 +51,17 @@ t_node	*my_construct_branch(t_node *tree, t_node *plist)
   tree->p_nx2->p_prev = tree;
   tree->p_nx2->p_nx2 = tnode_dup(plist->p_nx1);
   tree->p_nx2->p_nx1 = tnode_dup(tmp);
+  return (tree);
+}
+
+int	my_verif_list(t_node *plist)
+{
+  int	a;
+  t_node	*tree;
+
+  a = 0;
+  if (plist->p_nx1 == NULL)
+    tree = tnode_dup(plist);
   return (tree);
 }
 

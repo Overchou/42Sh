@@ -5,10 +5,11 @@
 ** Login   <besnie_b@epitech.net>
 ** 
 ** Started on  Sat Apr 19 15:02:31 2014 besnie_b
-** Last update Sun May 25 22:16:09 2014 guenol_v
+** Last update Sun May 25 22:38:45 2014 guenol_v
 */
 
 #include "lexer.h"
+#include <stdlib.h>
 
 int	main(int ac, char **av)
 {

@@ -5,7 +5,7 @@
 ** Login   <guenol_v@epitech.net>
 **
 ** Started on  Tue Apr 22 15:29:26 2014 guenol_v
-** Last update Sun May 25 22:17:05 2014 guenol_v
+** Last update Sun May 25 22:37:56 2014 guenol_v
 */
 
 #include <stdlib.h>
@@ -61,6 +61,8 @@ t_node	*my_prio(t_node *plist)
   t_node	*tree;
 
   tree = NULL;
+  if ((my_verif_list(plist)) != NULL)
+    tree = my_verif_list(plist);
   while (plist != NULL)
     {
       if (tree == NULL && verif_prio(plist) != 0)
