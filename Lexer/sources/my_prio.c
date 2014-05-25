@@ -5,7 +5,7 @@
 ** Login   <guenol_v@epitech.net>
 **
 ** Started on  Tue Apr 22 15:29:26 2014 guenol_v
-** Last update Sat May 24 17:07:59 2014 guenol_v
+** Last update Sun May 25 22:17:05 2014 guenol_v
 */
 
 #include <stdlib.h>
@@ -64,7 +64,8 @@ t_node	*my_prio(t_node *plist)
   while (plist != NULL)
     {
       if (tree == NULL && verif_prio(plist) != 0)
-	tree = my_construct(tree, plist);
+	if ((tree = my_construct(tree, plist)) == NULL)
+	  return (NULL);
       else if ((verif_str(plist) == 0) && tree != NULL)
 	tree = my_exec_prio(plist, tree);
       plist = plist->p_nx1;

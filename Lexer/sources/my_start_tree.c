@@ -5,7 +5,7 @@
 ** Login   <guenol_v@epitech.net>
 **
 ** Started on  Tue May 20 16:07:34 2014 guenol_v
-** Last update Sun May 25 17:03:55 2014 guenol_v
+** Last update Sun May 25 22:15:40 2014 guenol_v
 */
 
 #include <stdlib.h>
@@ -56,6 +56,8 @@ t_node	*my_construct_branch(t_node *tree, t_node *plist)
 
 t_node	*my_construct(t_node *tree, t_node *plist)
 {
+  if (plist->p_nx1 == NULL || plist->p_prev == NULL)
+    return (NULL);
   tree = tnode_dup(plist);
   tree->p_nx2 = tnode_dup(plist->p_nx1);
   tree->p_nx1 = tnode_dup(plist->p_prev);
