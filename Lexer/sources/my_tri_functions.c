@@ -5,7 +5,7 @@
 ** Login   <guenol_v@epitech.net>
 **
 ** Started on  Tue May 13 14:46:02 2014 guenol_v
-** Last update Sat May 24 23:43:48 2014 guenol_v
+** Last update Sun May 25 16:52:40 2014 guenol_v
 */
 
 #include <stdlib.h>
@@ -45,12 +45,10 @@ t_node	*my_exec_prio(t_node *plist, t_node *tree)
     }
   else if (my_checking_list(plist, a) == 1)
     {
-      if (verif_prio(tree->p_nx2) == 0)
-	tree->p_nx2 = my_construct_branch(tree, plist);
-      else if (verif_prio(tree->p_nx2) != 0)
-	tree = my_modif_branch(tree, plist);
+      if (verif_prio(tree->p_nx2) != 0)
+      	tree = my_modif_branch(tree, plist);
       else
-	return (NULL);
+	tree = my_construct_branch(tree, plist);
     }
   else
     tree = my_making_tree(plist, tree);

@@ -5,32 +5,52 @@
 ** Login   <guenol_v@epitech.net>
 **
 ** Started on  Tue May 20 16:07:34 2014 guenol_v
-** Last update Sat May 24 23:44:19 2014 guenol_v
+** Last update Sun May 25 17:03:55 2014 guenol_v
 */
 
 #include <stdlib.h>
 #include "lexer.h"
+#include "my.h"
+
+t_node  *tnode_dup_branch(t_node *p_node)
+{
+  t_node        *p_cpy;
+
+  p_cpy = NULL;
+  if ((p_cpy = malloc(sizeof(*p_cpy))) == NULL)
+    return (0);
+  if (p_cpy != NULL)
+    {
+      p_cpy->data = p_node->data;
+      p_cpy->type = p_node->type;
+      p_cpy->p_nx1 = p_node->p_nx1;
+      p_cpy->p_nx2 = p_node->p_nx2;
+      p_cpy->p_prev = NULL;
+    }
+  return (p_cpy);
+}
 
 t_node	*my_modif_branch(t_node *tree, t_node *plist)
 {
-  my_putchar('A');
+  t_node	*ope_tmp;
+
+  if (verif_prio(tree) != 0)
+    ope_tmp = tnode_dup_branch(tree->p_nx2);
+  tree->p_nx2 = tnode_dup(plist);
+  tree->p_nx2->p_nx2 = tnode_dup(plist->p_nx1);
+  tree->p_nx2->p_nx1 = ope_tmp;
   return (tree);
 }
 
 t_node	*my_construct_branch(t_node *tree, t_node *plist)
 {
-  int	a;
-  //trouver l'ope le plus proche
+  t_node	*tmp;
 
-  a = 0;
-  while (plist != NULL && a != 1)
-    {
-      if (verif_prio(plist) != 0)
-	a = 1;
-      plist = plist->p_nx1;
-    }
-  if (a == 1)
-    tree = my_construct(tree, plist);
+  tmp = tnode_dup(tree->p_nx2);
+  tree->p_nx2 = tnode_dup(plist);
+  tree->p_nx2->p_prev = tree;
+  tree->p_nx2->p_nx2 = tnode_dup(plist->p_nx1);
+  tree->p_nx2->p_nx1 = tnode_dup(tmp);
   return (tree);
 }
 
