@@ -5,7 +5,7 @@
 ** Login   <theven_d@epitech.net>
 ** 
 ** Started on  Sun May 25 16:50:49 2014 theven_d
-** Last update Sun May 25 16:51:39 2014 theven_d
+** Last update Sun May 25 17:21:16 2014 auffra_a
 */
 
 #include <unistd.h>
@@ -33,18 +33,16 @@ t_env	*cd_prev(t_env *env)
 
 t_env	*cd_minus(t_env *env)
 {
-  t_env *tmp;
   char *pwd;
   char *oldpwd;
 
-  tmp = env;
   if ((oldpwd = cd_pwding(env)) == NULL)
     return (NULL);
-  while (tmp != NULL)
+  while (env != NULL)
     {
-      if ((my_nncmp(tmp->value, "OLDPWD=", 0)) == 0)
+      if ((my_nncmp(env->value, "OLDPWD=", 0)) == 0)
 	{
-	  pwd = my_ncpy(tmp->value, 7);
+	  pwd = my_ncpy(env->value, 7);
 	  if ((chdir(pwd)) != 0)
 	    return (env);
 	  pwd = my_concat_cd("PWD ", pwd);
@@ -52,7 +50,7 @@ t_env	*cd_minus(t_env *env)
 	  env = my_setenv(oldpwd, env);
 	  return (env);
 	}
-      tmp = tmp->next;
+      env = env->next;
     }
   my_printf("No oldpwd available.\n");
   return (env);
@@ -60,16 +58,14 @@ t_env	*cd_minus(t_env *env)
 
 t_env	*cd_directory(t_env *env, char *directory)
 {
-  t_env *tmp;
   char *pwd;
   char *oldpwd;
 
-  tmp = env;
-  while (tmp != NULL)
+  while (env != NULL)
     {
-      if ((my_nncmp(tmp->value, "PWD=", 0)) == 0)
+      if ((my_nncmp(env->value, "PWD=", 0)) == 0)
 	{
-	  oldpwd = my_ncpy(tmp->value, 4);
+	  oldpwd = my_ncpy(env->value, 4);
 	  pwd = my_concat_cd("PWD ", my_concat_cd(my_concat_cd(oldpwd, "/")
 						  , directory));
 	  oldpwd = my_concat_cd("OLDPWD ", oldpwd);
@@ -82,7 +78,7 @@ t_env	*cd_directory(t_env *env, char *directory)
 	  env = my_setenv(oldpwd, env);
 	  return (env);
 	}
-      tmp = tmp->next;
+      env = env->next;
     }
   return (env);
 }
@@ -114,24 +110,29 @@ t_env   *cd_go_home(t_env *env)
 
 t_env   *shell_cd(t_env *env, char *directory)
 {
+  t_env *tmp;
+
+  tmp = env;
   if (directory == NULL)
     {
       env = cd_go_home(env);
       return (env);
     }
   if ((my_nncmp(directory, "..", 0)) == 0)
-    env = cd_prev(env);
+    env = cd_prev(tmp);
   else if ((my_nncmp(directory, "~", 0)) == 0)
-    env = cd_home(env, directory);
+    env = cd_home(tmp, directory);
   else if ((my_nncmp(directory, "-L", 0)) == 0)
-    env = cd_directory(env, my_ncpy(directory, 3));
+    env = cd_directory(tmp, my_ncpy(directory, 3));
   else if ((my_nncmp(directory, "-P", 0)) == 0)
-    env = cd_p(env, my_ncpy(directory, 3));
+    env = cd_p(tmp, my_ncpy(directory, 3));
   else if ((my_nncmp(directory, "/home/", 0)) == 0)
-    env = cd_by_home(env, directory);
+    env = cd_by_home(tmp, directory);
   else if ((my_nncmp(directory, "-", 0)) == 0)
-    env = cd_minus(env);
+    env = cd_minus(tmp);
   else
-    env = cd_directory(env, directory);
+    env = cd_directory(tmp, directory);
+  tmp = NULL;
+  free(tmp);
   return (env);
 }
