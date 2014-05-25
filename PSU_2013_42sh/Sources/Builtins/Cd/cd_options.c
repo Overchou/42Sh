@@ -5,7 +5,7 @@
 ** Login   <auffra_a@epitech.net>
 ** 
 ** Started on  Sun May 25 15:09:00 2014 auffra_a
-** Last update Sun May 25 17:00:40 2014 theven_d
+** Last update Sun May 25 17:03:28 2014 theven_d
 */
 
 #include <unistd.h>
@@ -47,9 +47,9 @@ t_env	*cd_home(t_env *env, char *directory)
 	  env = cd_go_home(env);
           pwd = my_concat_cd("PWD ", my_concat_cd(get_home(env), my_ncpy(directory, 1)));
 	  directory = my_concat_cd(get_home(env), my_ncpy(directory, 1));
-          if ((chdir(my_ncpy(directory, 6))) != 0)
+          if ((chdir(my_ncpy(directory, strlen(get_home(env) - 1)))) != 0)
             {
-              my_printf("vegash: cd: %s: Not a directory\n", my_ncpy(directory, 6));
+              my_printf("vegash: cd: %s: Not a directory\n", my_ncpy(directory, strlen(get_home(env) - 1)));
               return (env);
             }
 	  env = my_setenv(pwd, env);
