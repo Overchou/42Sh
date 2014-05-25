@@ -5,7 +5,7 @@
 ** Login   <auffra_a@epitech.net>
 ** 
 ** Started on  Sun May 25 15:09:00 2014 auffra_a
-** Last update Sun May 25 16:24:51 2014 auffra_a
+** Last update Sun May 25 17:00:40 2014 theven_d
 */
 
 #include <unistd.h>
@@ -43,24 +43,22 @@ t_env	*cd_home(t_env *env, char *directory)
     {
       if ((my_nncmp(tmp->value, "PWD=", 0)) == 0)
         {
-          oldpwd = my_concat("OLDPWD ", my_ncpy(tmp->value, 4));
+          oldpwd = my_concat_cd("OLDPWD ", my_ncpy(tmp->value, 4));
 	  env = cd_go_home(env);
-          pwd = my_concat("PWD ", my_concat(get_home(env), my_ncpy(directory, 1)));
-	  directory = my_concat(get_home(env), my_ncpy(directory, 1));
-          my_printf("\n%s\n%s\n", oldpwd, pwd);
-	  //	  env = setenv(pwd, env);
-	  //	  env = setenv(oldpwd, env);
-          if ((chdir(my_ncpy(directory, 1))) != 0)
+          pwd = my_concat_cd("PWD ", my_concat_cd(get_home(env), my_ncpy(directory, 1)));
+	  directory = my_concat_cd(get_home(env), my_ncpy(directory, 1));
+          if ((chdir(my_ncpy(directory, 6))) != 0)
             {
-              my_printf("vegash: cd: %s: Not a directory\n", directory);
+              my_printf("vegash: cd: %s: Not a directory\n", my_ncpy(directory, 6));
               return (env);
             }
+	  env = my_setenv(pwd, env);
+	  env = my_setenv(oldpwd, env);
         }
       tmp = tmp->next;
     }
   return (env);
 }
-
 
 t_env	*cd_by_home(t_env *env, char *directory)
 {
@@ -73,18 +71,17 @@ t_env	*cd_by_home(t_env *env, char *directory)
     {
       if ((my_nncmp(tmp->value, "PWD=", 0)) == 0)
 	{
-	  oldpwd = my_concat("OLDPWD ", my_ncpy(tmp->value, 4));
-	  pwd = my_concat("PWD ", directory);
-	  //	  env = setenv(pwd, env);
-	  //	  env = setenv(oldpwd, env);
+	  oldpwd = my_concat_cd("OLDPWD ", my_ncpy(tmp->value, 4));
+	  pwd = my_concat_cd("PWD ", directory);
 	  env = cd_go_home(env);
 	  env = cd_prev(env);
-	  my_printf("\n\n%s\n%s\n", oldpwd, pwd);
-	  if ((chdir(my_ncpy(directory, 1))) != 0)
+	  if ((chdir(my_ncpy(directory, 6))) != 0)
             {
-              my_printf("vegash: cd: %s: Not a directory\n", directory);
+              my_printf("vegash: cd: %s: Not a directory\n", my_ncpy(directory, 6));
               return (env);
             }
+	  env = my_setenv(pwd, env);
+	  env = my_setenv(oldpwd, env);
 	}
       tmp = tmp->next;
     }
@@ -95,7 +92,7 @@ t_env	*cd_p(t_env *env, char *directory)
 {
   if (directory == NULL)
     env = cd_go_home(env);
-  else if ((my_nncmp(directory, get_home(env))) == 0)
+  else if ((my_nncmp(directory, get_home(env), 0)) == 0)
     env = cd_by_home(env, directory);
   else
     env = cd_directory(env, directory);

@@ -1,15 +1,11 @@
 /*
-** cd.c for 42 in /home/auffra_a/rendu/42sh/sources
+** cd.c for 42sh in /home/theven_d/rendu/42Sh/PSU_2013_42sh
 ** 
-** Made by auffra_a
-** Login   <auffra_a@epitech.net>
+** Made by theven_d
+** Login   <theven_d@epitech.net>
 ** 
-** Started on  Thu May 22 18:11:39 2014 auffra_a
-<<<<<<< HEAD
-** Last update Sun May 25 16:31:09 2014 theven_d
-=======
-** Last update Sun May 25 16:31:10 2014 auffra_a
->>>>>>> 1b8c8a2defdba44fcd2aa4e7263e42e528312509
+** Started on  Sun May 25 16:50:49 2014 theven_d
+** Last update Sun May 25 16:51:39 2014 theven_d
 */
 
 #include <unistd.h>
@@ -76,7 +72,7 @@ t_env	*cd_directory(t_env *env, char *directory)
 	  oldpwd = my_ncpy(tmp->value, 4);
 	  pwd = my_concat_cd("PWD ", my_concat_cd(my_concat_cd(oldpwd, "/")
 						  , directory));
-	  Oldpwd = my_concat_cd("OLDPWD ", oldpwd);
+	  oldpwd = my_concat_cd("OLDPWD ", oldpwd);
 	  if ((chdir(directory)) != 0)
 	    {
 	      my_printf("vegash: cd: %s: Not a directory\n", directory);
@@ -116,11 +112,7 @@ t_env   *cd_go_home(t_env *env)
   return (env);
 }
 
-<<<<<<< HEAD
-t_env	*shell_cd(t_env *env, char *directory)
-=======
 t_env   *shell_cd(t_env *env, char *directory)
->>>>>>> 1b8c8a2defdba44fcd2aa4e7263e42e528312509
 {
   if (directory == NULL)
     {

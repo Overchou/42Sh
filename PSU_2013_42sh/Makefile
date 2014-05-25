@@ -5,7 +5,7 @@
 ## Login   <theven_d@epitech.net>
 ## 
 ## Started on  Tue May 20 15:47:47 2014 theven_d
-## Last update Sun May 25 15:41:12 2014 theven_d
+## Last update Sun May 25 16:52:05 2014 theven_d
 ##
 
 SOURCES		= Sources/
@@ -49,6 +49,7 @@ SRCS		= ./Lib/my_epur_str.c \
 		  $(SOURCES)$(BUILTINS)$(ENV)$(SETENV)my_setenv_func.c \
 		  $(SOURCES)$(BUILTINS)$(ENV)$(UNSETENV)unsetenv.c \
 		  $(SOURCES)$(BUILTINS)$(CD)cd.c \
+		  $(SOURCES)$(BUILTINS)$(CD)cd_options.c \
 		  $(SOURCES)$(BUILTINS)$(CD)cd_funcs.c \
 		  $(SOURCES)$(BUILTINS)$(CD)cd_lib.c \
 		  $(SOURCES)$(BUILTINS)$(ECHO)echo.c \
