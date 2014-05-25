@@ -5,7 +5,7 @@
 ** Login   <auffra_a@epitech.net>
 ** 
 ** Started on  Thu May 22 18:11:39 2014 auffra_a
-** Last update Sun May 25 00:23:16 2014 auffra_a
+** Last update Sun May 25 12:14:40 2014 auffra_a
 */
 
 #include <unistd.h>
@@ -13,7 +13,7 @@
 #include <stdlib.h>
 #include "my.h"
 #include "cd.h"
- 
+
 t_env	*cd_prev(t_env *env)
 {
   char *oldpwd;
@@ -75,7 +75,10 @@ t_env	*cd_directory(t_env *env, char *directory)
 	  oldpwd = my_concat("OLDPWD ", oldpwd);
 	  my_printf("\n%s\n%s\n", oldpwd, pwd);
 	  if ((chdir(directory)) != 0)
-	    return (NULL);
+	    {
+	      my_putstr("vegash: cd: %s: Not a directory directory\n");
+	      return (NULL);
+	    }
 	  //	  env = setenv(pwd, env);
 	  //	  env = setenv(oldpwd, env);
 	  return (env);
@@ -130,4 +133,17 @@ t_env	*shell_cd(t_env *env, char *directory)
   else
     env = cd_directory(env, directory);
   return (env);
+}
+
+int	main(int argc, char **argv, char **env)
+{
+  char buffer[5000];
+  t_env *list;
+
+  if (argc == 3)
+    my_printf("%s\nON A PRIS TA MERE EN OTAGE\n", argv[1]);
+  list = my_env_in_list(env);
+  read(0, buffer, 5000);
+  shell_cd(list, buffer);
+  return (0);
 }

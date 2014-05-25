@@ -5,7 +5,7 @@
 ** Login   <theven_d@epitech.net>
 ** 
 ** Started on  Mon Apr 14 11:38:58 2014 theven_d
-** Last update Sat May 24 16:55:59 2014 theven_d
+** Last update Sun May 25 16:46:05 2014 theven_d
 */
 
 #include <stdlib.h>
@@ -28,7 +28,7 @@ int	my_loop(char **env)
     {
       our_magic_prompt(chain_env);
       //my_signal();
-      buffer = my_get_line('\n', &a);
+      buffer = my_get_line('\n', &a, NULL, 0);
       buffer = my_epur_str(buffer, a);
       if (buffer != NULL)
 	check_builtin(buffer, chain_env);

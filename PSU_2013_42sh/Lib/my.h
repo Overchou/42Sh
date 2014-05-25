@@ -5,7 +5,7 @@
 ** Login   <theven_d@epitech.net>
 ** 
 ** Started on  Fri Dec  6 22:47:59 2013 theven_d
-** Last update Fri May 23 15:34:38 2014 theven_d
+** Last update Sun May 25 15:39:10 2014 theven_d
 */
 
 #ifndef MY_H_
@@ -34,7 +34,6 @@ int     my_put_nbr_hexamin(va_list);
 int     my_put_nbr_hexamaj(va_list);
 int     my_put_nbr_bus(unsigned int, char *);
 int	my_put_nbr_base(int, char *);
-char    *my_strdupcpy(char *);
 char	*my_strdup(char *);
 char	**my_str_to_wordtab(char *);
 
