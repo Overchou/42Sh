@@ -5,7 +5,7 @@
 ** Login   <auffra_a@epitech.net>
 ** 
 ** Started on  Thu May 22 18:11:39 2014 auffra_a
-** Last update Sun May 25 14:43:32 2014 theven_d
+** Last update Sun May 25 16:28:12 2014 auffra_a
 */
 
 #include <unistd.h>
@@ -25,7 +25,7 @@ t_env	*cd_prev(t_env *env)
   if ((pwd = cd_lesspwd(env)) == NULL)
     return (NULL);
   if ((chdir("..")) != 0)
-    return (NULL);
+    return (env);
   env = my_setenv(pwd, env);
   env = my_setenv(oldpwd, env);
   return (env);
@@ -46,7 +46,7 @@ t_env	*cd_minus(t_env *env)
 	{
 	  pwd = my_ncpy(tmp->value, 7);
 	  if ((chdir(pwd)) != 0)
-	    return (NULL);
+	    return (env);
 	  pwd = my_concat_cd("PWD ", pwd);
 	  env = my_setenv(pwd, env);
 	  env = my_setenv(oldpwd, env);
@@ -75,7 +75,7 @@ t_env	*cd_directory(t_env *env, char *directory)
 	  if ((chdir(directory)) != 0)
 	    {
 	      my_printf("vegash: cd: %s: Not a directory\n", directory);
-	      return (NULL);
+	      return (env);
 	    }
 	  env = my_setenv(pwd, env);
 	  env = my_setenv(oldpwd, env);
@@ -110,8 +110,8 @@ t_env   *cd_go_home(t_env *env)
   return (env);
 }
 
-t_env	*shell_cd(t_env *env, char *directory)
-{  
+t_env   *shell_cd(t_env *env, char *directory)
+{
   if (directory == NULL)
     {
       env = cd_go_home(env);
@@ -119,10 +119,14 @@ t_env	*shell_cd(t_env *env, char *directory)
     }
   if ((my_nncmp(directory, "..", 0)) == 0)
     env = cd_prev(env);
+  else if ((my_nncmp(directory, "~", 0)) == 0)
+    env = cd_home(env, directory);
   else if ((my_nncmp(directory, "-L", 0)) == 0)
-    env = cd_go_home(env);
+    env = cd_p(env, my_ncpy(directory, 3));
   else if ((my_nncmp(directory, "-P", 0)) == 0)
-    env = cd_go_home(env);
+    env = cd_p(env, my_ncpy(directory, 3));
+  else if ((my_nncmp(directory, "/home/", 0)) == 0)
+    env = cd_by_home(env, directory);
   else if ((my_nncmp(directory, "-", 0)) == 0)
     env = cd_minus(env);
   else
