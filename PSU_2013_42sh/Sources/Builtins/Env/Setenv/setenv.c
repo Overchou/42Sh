@@ -5,7 +5,7 @@
 ** Login   <theven_d@epitech.net>
 ** 
 ** Started on  Fri Apr 25 17:29:51 2014 theven_d
-** Last update Sat May 24 14:55:37 2014 theven_d
+** Last update Sun May 25 16:33:22 2014 theven_d
 */
 
 #include <string.h>
@@ -46,7 +46,7 @@ int	my_add(t_env *env, char **set)
 	  if (check != 0)
 	    if ((tmp->value = concat_setenv(set[0], set[1])) == NULL)
 	      return (-1);
-	  return (1); 
+	  return (1);
 	}
       if (tmp->next == NULL)
 	return (my_new_add(set, tmp));
@@ -72,10 +72,11 @@ t_env	*my_setenv(char *str, t_env *env)
 
   if (str == NULL || str[0] == '\0')
     return (NULL);
-  if (((set = my_str_to_wordtab(str)) == NULL) || ((set[1] == NULL)) || (((set[0] = my_str_capitalize(set[0])) == NULL)))
+  if (((set = my_str_to_wordtab(str)) == NULL) || ((set[1] == NULL))
+      || (((set[0] = my_str_capitalize(set[0])) == NULL)))
     {
       my_free_tab(set);
-      return (NULL);  
+      return (NULL);
     }
   if (env == NULL)
     env = my_add_in_null_env(env, set);

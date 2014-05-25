@@ -5,7 +5,7 @@
 ** Login   <theven_d@epitech.net>
 ** 
 ** Started on  Wed May 21 15:13:41 2014 theven_d
-** Last update Sat May 24 23:22:20 2014 theven_d
+** Last update Sun May 25 16:47:12 2014 theven_d
 */
 
 #include <stdlib.h>
@@ -18,7 +18,7 @@ char    *my_concat(char *result, char *recup, int i)
   char *tmp;
   int   j;
   int   k;
-  
+
   j = 0;
   k = 0;
   if ((tmp = malloc(sizeof(*tmp) * (i + 1))) == NULL)
@@ -51,17 +51,13 @@ int     my_check_value(char value, char *str)
   return (0);
 }
 
-char    *my_get_line(char stop, int *a)
+char    *my_get_line(char stop, int *a, char *result, int i)
 {
-  int   i;
   int   b;
-  char  *result;
   char  *recup;
 
-  i = 0;
   if ((recup = malloc(sizeof(*recup) * (SIZE + 1))) == NULL)
     return (NULL);
-  result = NULL;
   while ((b = read(0, recup, SIZE)) > 0)
     {
       *a += b;

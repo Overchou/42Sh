@@ -5,10 +5,11 @@
 ** Login   <theven_d@epitech.net>
 ** 
 ** Started on  Fri May 23 15:24:51 2014 theven_d
-** Last update Fri May 23 15:35:10 2014 theven_d
+** Last update Sun May 25 15:39:45 2014 theven_d
 */
 
 #include <stdlib.h>
+#include <string.h>
 #include "my.h"
 
 char    *my_str_capitalize(char *str)
@@ -17,7 +18,7 @@ char    *my_str_capitalize(char *str)
   int   i;
 
   i = 0;
-  if ((res = my_strdupcpy(str)) == NULL)
+  if ((res = strdup(str)) == NULL)
     return (NULL);
   while (res[i] != '\0')
     {

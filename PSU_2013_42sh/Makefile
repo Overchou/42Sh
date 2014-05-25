@@ -5,7 +5,7 @@
 ## Login   <theven_d@epitech.net>
 ## 
 ## Started on  Tue May 20 15:47:47 2014 theven_d
-## Last update Sat May 24 17:40:06 2014 theven_d
+## Last update Sun May 25 15:41:12 2014 theven_d
 ##
 
 SOURCES		= Sources/
@@ -58,6 +58,16 @@ SRCS		= ./Lib/my_epur_str.c \
 		  $(SOURCES)$(EXECUTION)my_exec.c \
 		  $(SOURCES)$(FREE_FCT)my_free_env.c \
 		  $(SOURCES)$(FREE_FCT)my_free_env_ptr.c \
+		  $(SOURCES)$(LEXER)check_syntax.c \
+		  $(SOURCES)$(LEXER)lexeme_in_list.c \
+		  $(SOURCES)$(LEXER)lexer_main.c \
+		  $(SOURCES)$(LEXER)liste_tri_c.c \
+		  $(SOURCES)$(LEXER)liste_tri_c2.c \
+		  $(SOURCES)$(LEXER)my_prio.c \
+		  $(SOURCES)$(LEXER)my_start_tree.c \
+		  $(SOURCES)$(LEXER)my_tri_functions.c \
+		  $(SOURCES)$(LEXER)str_to_tri.c \
+		  $(SOURCES)$(LEXER)verif_syntax.c \
 		  $(SOURCES)$(MAIN)main.c \
 		  $(SOURCES)$(MAIN)my_signal.c \
 		  $(SOURCES)$(MAIN)get_line.c \
@@ -72,15 +82,15 @@ CFLAGS		= -I ./Header -lmy -L ./Lib -Wall -Wextra
 all: $(NAME)
 
 $(NAME): $(OBJS)	
-#	make re -C Lib/
+	make re -C Lib/
 	$(CC) -o $(NAME) $(OBJS) $(CFLAGS) 
 
 clean:
-#	make clean -C Lib/
+	make clean -C Lib/
 	$(RM) $(OBJS)
 
 fclean: clean
-#	make fclean -C Lib/
+	make fclean -C Lib/
 	$(RM) $(NAME)
 
 re: fclean all

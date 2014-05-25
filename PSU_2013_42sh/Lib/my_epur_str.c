@@ -5,7 +5,7 @@
 ** Login   <theven_d@epitech.net>
 ** 
 ** Started on  Fri May 16 18:37:17 2014 theven_d
-** Last update Sat May 24 10:16:00 2014 theven_d
+** Last update Sun May 25 15:38:54 2014 theven_d
 */
 
 #include <stdlib.h>
@@ -60,6 +60,5 @@ char	*my_epur_str(char *epur, int len)
   if (j == 0)
     return (NULL);
   tmp[j] = '\0';
-  tmp = my_strdupcpy(tmp);
   return (tmp);
 }

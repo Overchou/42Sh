@@ -5,7 +5,7 @@
 ** Login   <auffra_a@epitech.net>
 ** 
 ** Started on  Sat May 17 15:53:10 2014 auffra_a
-** Last update Thu May 22 18:14:38 2014 theven_d
+** Last update Sun May 25 16:48:07 2014 theven_d
 */
 
 #include <stdlib.h>
@@ -19,7 +19,7 @@ char	*find_pwd_prompt(char *pwd, t_env *env)
 {
   int	i;
   int	j;
-  
+
   j = 3;
   i = -1;
   while (env != NULL)

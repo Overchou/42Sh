@@ -5,10 +5,10 @@
 ** Login   <auffra_a@epitech.net>
 ** 
 ** Started on  Fri May 23 16:48:28 2014 auffra_a
-** Last update Sat May 24 23:27:45 2014 theven_d
+** Last update Sun May 25 15:36:48 2014 theven_d
 */
 
-#include <env.h>
+#include "env.h"
 
 #ifndef CD_H_
 # define CD_H_
@@ -21,6 +21,7 @@ t_env   *cd_prev(t_env *env);
 t_env   *cd_minus(t_env *env);
 t_env   *cd_directory(t_env *env, char *directory);
 t_env   *shell_cd(t_env *env, char *directory);
+t_env   *cd_go_home(t_env *env);
 
 char    *my_ncpy(char *s, int x1);
 char    *my_concat_cd(char *s1, char *s2);
