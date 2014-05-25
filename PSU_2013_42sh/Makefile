@@ -5,7 +5,7 @@
 ## Login   <theven_d@epitech.net>
 ## 
 ## Started on  Tue May 20 15:47:47 2014 theven_d
-## Last update Sun May 25 16:52:05 2014 theven_d
+## Last update Sun May 25 17:59:46 2014 theven_d
 ##
 
 SOURCES		= Sources/
@@ -58,6 +58,7 @@ SRCS		= ./Lib/my_epur_str.c \
 		  $(SOURCES)$(BUILTINS)check_builtin.c \
 		  $(SOURCES)$(EXECUTION)my_exec.c \
 		  $(SOURCES)$(FREE_FCT)my_free_env.c \
+		  $(SOURCES)$(FREE_FCT)free_cd.c \
 		  $(SOURCES)$(FREE_FCT)my_free_env_ptr.c \
 		  $(SOURCES)$(LEXER)check_syntax.c \
 		  $(SOURCES)$(LEXER)lexeme_in_list.c \

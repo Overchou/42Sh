@@ -5,7 +5,7 @@
 ** Login   <auffra_a@epitech.net>
 ** 
 ** Started on  Fri May 23 16:34:48 2014 auffra_a
-** Last update Sat May 24 23:29:48 2014 theven_d
+** Last update Sun May 25 18:20:31 2014 theven_d
 */
 
 #include <unistd.h>
@@ -20,6 +20,8 @@ char    *my_ncpy(char *s, int x1)
   int i;
   int x2;
 
+  if (x1 > (int)strlen(s))
+    return (NULL);
   x2 = strlen(s);
   x1--;
   i = -1;

@@ -5,7 +5,7 @@
 ** Login   <theven_d@epitech.net>
 ** 
 ** Started on  Sat Apr 26 16:39:35 2014 theven_d
-** Last update Sun May 25 16:13:50 2014 theven_d
+** Last update Sun May 25 18:06:33 2014 theven_d
 */
 
 #include <stdlib.h>
@@ -55,5 +55,6 @@ int	check_builtin(char *buffer, t_env *chain_env)
     chain_env = my_exit(tmp);*/
   else
     my_exec(buffer, chain_env);
+  free(tmp);
   return (0);
 }

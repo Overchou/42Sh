@@ -5,13 +5,14 @@
 ** Login   <auffra_a@epitech.net>
 ** 
 ** Started on  Sun May 25 15:09:00 2014 auffra_a
-** Last update Sun May 25 17:21:55 2014 auffra_a
+** Last update Sun May 25 18:19:17 2014 theven_d
 */
 
 #include <unistd.h>
 #include <string.h>
 #include <stdlib.h>
 #include "my.h"
+#include "free_fct.h"
 #include "cd.h"
 
 char	*get_home(t_env *env)
@@ -25,10 +26,15 @@ char	*get_home(t_env *env)
       if ((my_nncmp(tmp->value, "HOME=", 0)) == 0)
 	{
 	  home = my_ncpy(tmp->value, 5);
+	  my_printf("%s\n%d\n", home, strlen(home));
+	  tmp = NULL;
+	  free(tmp);
 	  return (home);
 	}
       tmp = tmp->next;
     }
+  tmp = NULL;
+  free(tmp);
   return (NULL);
 }
 
@@ -50,7 +56,8 @@ t_env	*cd_home(t_env *env, char *directory)
             {
               my_printf("vegash: cd: %s: Not a directory\n",
 			my_ncpy(directory, strlen(get_home(env) - 1)));
-              return (env);
+              my_free_in_cd(pwd, oldpwd);
+	      return (env);
             }
 	  env = my_setenv(pwd, env);
 	  env = my_setenv(oldpwd, env);
@@ -77,6 +84,7 @@ t_env	*cd_by_home(t_env *env, char *directory)
             {
               my_printf("vegash: cd: %s: Not a directory\n",
 			my_ncpy(directory, 6));
+              my_free_in_cd(pwd, oldpwd);
               return (env);
             }
 	  env = my_setenv(pwd, env);
@@ -84,6 +92,7 @@ t_env	*cd_by_home(t_env *env, char *directory)
 	}
       env = env->next;
     }
+  my_free_in_cd(pwd, oldpwd);
   return (env);
 }
 

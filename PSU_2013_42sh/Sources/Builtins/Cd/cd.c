@@ -5,13 +5,14 @@
 ** Login   <theven_d@epitech.net>
 ** 
 ** Started on  Sun May 25 16:50:49 2014 theven_d
-** Last update Sun May 25 17:21:16 2014 auffra_a
+** Last update Sun May 25 18:18:46 2014 theven_d
 */
 
 #include <unistd.h>
 #include <string.h>
 #include <stdlib.h>
 #include "my.h"
+#include "free_fct.h"
 #include "cd.h"
 #include "env.h"
 
@@ -28,6 +29,7 @@ t_env	*cd_prev(t_env *env)
     return (env);
   env = my_setenv(pwd, env);
   env = my_setenv(oldpwd, env);
+  my_free_in_cd(pwd, oldpwd);
   return (env);
 }
 
@@ -48,11 +50,13 @@ t_env	*cd_minus(t_env *env)
 	  pwd = my_concat_cd("PWD ", pwd);
 	  env = my_setenv(pwd, env);
 	  env = my_setenv(oldpwd, env);
+	  my_free_in_cd(pwd, oldpwd);
 	  return (env);
 	}
       env = env->next;
     }
   my_printf("No oldpwd available.\n");
+  free(oldpwd);
   return (env);
 }
 
@@ -72,14 +76,15 @@ t_env	*cd_directory(t_env *env, char *directory)
 	  if ((chdir(directory)) != 0)
 	    {
 	      my_printf("vegash: cd: %s: Not a directory\n", directory);
+	      my_free_in_cd(pwd, oldpwd);	    
 	      return (env);
 	    }
 	  env = my_setenv(pwd, env);
 	  env = my_setenv(oldpwd, env);
-	  return (env);
 	}
       env = env->next;
     }
+  my_free_in_cd(pwd, oldpwd);
   return (env);
 }
 
@@ -105,6 +110,10 @@ t_env   *cd_go_home(t_env *env)
     }
   env = my_setenv(oldpwd, env);
   env = my_setenv(pwd, env);
+  my_free_in_cd(pwd, oldpwd);
+  free(home);
+  tmp = NULL;
+  free(tmp);
   return (env);
 }
 

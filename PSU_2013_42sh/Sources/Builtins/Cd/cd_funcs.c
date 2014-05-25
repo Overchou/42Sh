@@ -5,12 +5,13 @@
 ** Login   <auffra_a@epitech.net>
 ** 
 ** Started on  Fri May 23 16:14:38 2014 auffra_a
-** Last update Sat May 24 23:35:47 2014 theven_d
+** Last update Sun May 25 18:19:46 2014 theven_d
 */
 
 #include <unistd.h>
 #include <string.h>
 #include <stdlib.h>
+#include "free_fct.h"
 #include "my.h"
 #include "cd.h"
 
@@ -24,14 +25,16 @@ char    *cd_pwding(t_env *env)
     {
       if ((my_nncmp(tmp->value, "PWD=", 0)) == 0)
         {
-          if ((oldpwd = my_ncpy(tmp->value, 4)) == NULL)
+          if ((oldpwd = my_ncpy(tmp->value, 4)) == NULL)	    
 	    return (NULL);
           if ((oldpwd = my_concat_cd("OLDPWD ", oldpwd)) == NULL)
 	    return (NULL);
-          return (oldpwd);
+	  my_free_env_ptr(tmp);
+	  return (oldpwd);
         }
       tmp = tmp->next;
     }
+  my_free_env_ptr(tmp);
   return (NULL);
 }
 
@@ -77,9 +80,11 @@ char    *cd_lesspwd(t_env *env)
 	    return (NULL);
           if ((pwd = my_concat_cd("PWD ", pwd)) == NULL)
 	    return (NULL);
-          return (pwd);
+	  my_free_env_ptr(tmp);     
+	  return (pwd);
         }
       tmp = tmp->next;
     }
+  my_free_env_ptr(tmp);
   return (NULL);
 }
