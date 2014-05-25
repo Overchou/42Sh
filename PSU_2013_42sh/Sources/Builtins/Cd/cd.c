@@ -5,7 +5,7 @@
 ** Login   <auffra_a@epitech.net>
 ** 
 ** Started on  Thu May 22 18:11:39 2014 auffra_a
-** Last update Sun May 25 16:28:12 2014 auffra_a
+** Last update Sun May 25 16:31:10 2014 auffra_a
 */
 
 #include <unistd.h>
@@ -122,7 +122,7 @@ t_env   *shell_cd(t_env *env, char *directory)
   else if ((my_nncmp(directory, "~", 0)) == 0)
     env = cd_home(env, directory);
   else if ((my_nncmp(directory, "-L", 0)) == 0)
-    env = cd_p(env, my_ncpy(directory, 3));
+    env = cd_directory(env, my_ncpy(directory, 3));
   else if ((my_nncmp(directory, "-P", 0)) == 0)
     env = cd_p(env, my_ncpy(directory, 3));
   else if ((my_nncmp(directory, "/home/", 0)) == 0)
