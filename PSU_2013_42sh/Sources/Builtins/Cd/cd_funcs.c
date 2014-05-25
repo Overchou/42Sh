@@ -1,11 +1,11 @@
 /*
 ** cd_funcs.c for 42 in /home/auffra_a/rendu/42sh/sources
-** 
+**
 ** Made by auffra_a
 ** Login   <auffra_a@epitech.net>
-** 
+**
 ** Started on  Fri May 23 16:14:38 2014 auffra_a
-** Last update Sun May 25 18:19:46 2014 theven_d
+** Last update Sun May 25 21:15:33 2014 besnie_b
 */
 
 #include <unistd.h>
@@ -25,7 +25,7 @@ char    *cd_pwding(t_env *env)
     {
       if ((my_nncmp(tmp->value, "PWD=", 0)) == 0)
         {
-          if ((oldpwd = my_ncpy(tmp->value, 4)) == NULL)	    
+          if ((oldpwd = my_ncpy(tmp->value, 4)) == NULL)
 	    return (NULL);
           if ((oldpwd = my_concat_cd("OLDPWD ", oldpwd)) == NULL)
 	    return (NULL);
@@ -80,7 +80,7 @@ char    *cd_lesspwd(t_env *env)
 	    return (NULL);
           if ((pwd = my_concat_cd("PWD ", pwd)) == NULL)
 	    return (NULL);
-	  my_free_env_ptr(tmp);     
+	  my_free_env_ptr(tmp);
 	  return (pwd);
         }
       tmp = tmp->next;

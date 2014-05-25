@@ -5,7 +5,7 @@
 ** Login   <besnie_b@epitech.net>
 ** 
 ** Started on  Wed May 21 17:47:32 2014 besnie_b
-** Last update Sun May 25 20:40:38 2014 besnie_b
+** Last update Sun May 25 21:01:58 2014 besnie_b
 */
 
 #include <sys/wait.h>
@@ -36,11 +36,12 @@ int	my_exec_son(int pfd[], t_node *node, t_env *env)
 {
   char	*pathcmd;
   char	**cmd;
+  int	pid;
 
+  cmd = my_str_to_wordtab(node->data);
   pid = fork();
   if (pid == 0)
     {
-      cmd = my_str_to_wordtab(node->data);
       dup2(pfd[0], 0);
       dup2(pfd[1], 1);
       pathcmd = my_check_access(cmd[0], my_get_path(env));
@@ -49,6 +50,7 @@ int	my_exec_son(int pfd[], t_node *node, t_env *env)
     }
   else
     wait(&pid);
+  my_free_tab(cmd);
   return (0);
 }
 
@@ -58,31 +60,26 @@ int	my_last_son(int pfd[], t_node *node, t_env *env)
   char	**cmd;
   char	*pathcmd;
 
-  if (ncmd == 1)
+  cmd = my_str_to_wordtab(node->data);
+  pid = fork();
+  if (pid == 0)
     {
-      pid = fork();
-      if (pid == 0)
-	{
-	  cmd = my_str_to_wordtab(node->data);
-	  close(pfd[0]);
-	  dup2(pdf[1], 1);
-	  if (verif_prio(node->data) != 0)
-	    my_next_func(node, env);
-	  pathcmd = my_check_access(cmd[0], my_get_path(env));
-	  execve(cmd[0], cmd, tab_env(env));
-	  return (-1);
-	}
-      else
-	wait(&pid);
-      my_free_tab(cmd);
+      close(pfd[0]);
+      dup2(pfd[1], 1);
+      if (verif_prio(node) != 0)
+	my_next_func(node, env);
+      pathcmd = my_check_access(cmd[0], my_get_path(env));
+      execve(pathcmd, cmd, tab_env(env));
+      return (-1);
     }
+  else
+    wait(&pid);
+  my_free_tab(cmd);
   return (0);
 }
 
 int	my_next_son(int pfd[], int ncmd, t_node *node, t_env *env)
 {
-  int	pid;
-
   ncmd--;
   if (ncmd > 1)
     {
@@ -94,29 +91,28 @@ int	my_next_son(int pfd[], int ncmd, t_node *node, t_env *env)
       my_last_son(pfd, node->p_nx1, env);
       my_exec_son(pfd, node->p_nx2, env);
     }
-  my_free_tab(cmd);
   return (0);
 }
 
-int	my_first_son(int pfd[], int ncmd, t_node *node, t_env *t_env)
+int	my_first_son(int pfd[], int ncmd, t_node *node, t_env *env)
 {
   int	pid;
   char	**cmd;
   char	*pathcmd;
 
   ncmd--;
+  cmd = my_str_to_wordtab(node->p_nx2->data);
   pid = fork();
   if (pid == 0)
     {
-      cmd = my_str_to_wordtab(p_node->p_nx2->data);
-      my_next_son(pfd, ncmd, node->p_nx1, t_env);
+      my_next_son(pfd, ncmd, node->p_nx1, env);
       dup2(pfd[0], 0);
-      pathmcd = my_check_access(cmd[0], my_get_path(env));
-      execve(cmd[0], cmd, teb_env(env));
+      pathcmd = my_check_access(cmd[0], my_get_path(env));
+      execve(pathcmd, cmd, tab_env(env));
       return (-1);
     }
   else
-    wait(&wait);
+    wait(&pid);
   my_free_tab(cmd);
   return (0);
 }
@@ -130,6 +126,6 @@ int	mpipes_func(t_node *p_node, t_env *env)
   if (pipe(pfd) == -1)
     return (-1);
   heritage = pipe_counter(p_node) + 1;
-  my_first_son(pfd, heritage, p_node, t_env);
+  my_first_son(pfd, heritage, p_node, env);
   return (0);
 }

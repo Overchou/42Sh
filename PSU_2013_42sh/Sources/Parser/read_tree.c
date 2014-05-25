@@ -1,11 +1,11 @@
 /*
 ** read_tree.c for read_tree in /home/besnie_b/42Sh/Parser
-** 
+**
 ** Made by besnie_b
 ** Login   <besnie_b@epitech.net>
-** 
+**
 ** Started on  Sat May 24 16:28:19 2014 besnie_b
-** Last update Sun May 25 20:41:25 2014 besnie_b
+** Last update Sun May 25 21:22:35 2014 besnie_b
 */
 
 #include <stdlib.h>
@@ -25,8 +25,8 @@ int	distrib_func(t_node *node, t_env *env)
     double_redir_left(node, env);
   if (verif_prio(node) > 1)
     {
-      
-    } 
+
+    }
   else
     return (-1);
   return (0);
@@ -61,7 +61,7 @@ int	buldo_rec(t_node *node)
 
 int	fallen_down_nx(t_node *node, t_env *env)
 {
-  distrib_func(node, env); 
+  distrib_func(node, env);
   buldo_rec(node);
   return (0);
 }

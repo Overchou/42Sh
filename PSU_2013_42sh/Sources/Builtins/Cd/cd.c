@@ -1,11 +1,11 @@
 /*
 ** cd.c for 42sh in /home/theven_d/rendu/42Sh/PSU_2013_42sh
-** 
+**
 ** Made by theven_d
 ** Login   <theven_d@epitech.net>
-** 
+**
 ** Started on  Sun May 25 16:50:49 2014 theven_d
-** Last update Sun May 25 18:18:46 2014 theven_d
+** Last update Sun May 25 21:14:52 2014 besnie_b
 */
 
 #include <unistd.h>
@@ -76,7 +76,7 @@ t_env	*cd_directory(t_env *env, char *directory)
 	  if ((chdir(directory)) != 0)
 	    {
 	      my_printf("vegash: cd: %s: Not a directory\n", directory);
-	      my_free_in_cd(pwd, oldpwd);	    
+	      my_free_in_cd(pwd, oldpwd);
 	      return (env);
 	    }
 	  env = my_setenv(pwd, env);
