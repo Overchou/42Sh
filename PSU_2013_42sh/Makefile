@@ -5,7 +5,7 @@
 ## Login   <theven_d@epitech.net>
 ## 
 ## Started on  Tue May 20 15:47:47 2014 theven_d
-## Last update Sun May 25 20:02:40 2014 besnie_b
+## Last update Sun May 25 21:41:02 2014 besnie_b
 ##
 
 SOURCES		= Sources/
@@ -35,8 +35,6 @@ LEXER		= Lexer/
 MAIN		= Main/
 
 PARSER		= Parser/
-
-REDI_PIPE	= Redi_Pipe/
 
 DOUBLE_REDI	= Double_Redi/
 
@@ -77,12 +75,11 @@ SRCS		= $(SOURCES)$(BUILTINS)$(ENV)$(ENV)env.c \
 		  $(SOURCES)$(LEXER)verif_syntax.c \
 		  $(SOURCES)$(PARSER)parser_func.c \
 		  $(SOURCES)$(PARSER)read_tree.c \
-		  $(SOURCES)$(REDI_PIPE)$(DOUBLE_REDI)double_mredir.c \
-		  $(SOURCES)$(REDI_PIPE)$(PIPE)my_path.c \
-		  $(SOURCES)$(REDI_PIPE)$(PIPE)next_pipes.c \
-		  $(SOURCES)$(REDI_PIPE)$(PIPE)pipes.c \
-		  $(SOURCES)$(REDI_PIPE)$(PIPE)start_pipes.c \
-		  $(SOURCES)$(REDI_PIPE)$(SIMPLE_REDI)simple_mredir.c \
+		  $(SOURCES)$(PARSER)double_mredir_left.c \
+		  $(SOURCES)$(PARSER)double_mredir_right.c \
+		  $(SOURCES)$(PARSER)pipes.c \
+		  $(SOURCES)$(PARSER)simple_mredir_left.c \
+		  $(SOURCES)$(PARSER)simple_mredir_right.c \
 		  $(SOURCES)$(MAIN)main.c \
 		  $(SOURCES)$(MAIN)my_signal.c \
 		  $(SOURCES)$(MAIN)get_line.c \
