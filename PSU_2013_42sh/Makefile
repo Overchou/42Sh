@@ -5,7 +5,7 @@
 ## Login   <theven_d@epitech.net>
 ## 
 ## Started on  Tue May 20 15:47:47 2014 theven_d
-## Last update Sun May 25 18:57:32 2014 theven_d
+## Last update Sun May 25 20:02:40 2014 besnie_b
 ##
 
 SOURCES		= Sources/
@@ -77,7 +77,6 @@ SRCS		= $(SOURCES)$(BUILTINS)$(ENV)$(ENV)env.c \
 		  $(SOURCES)$(LEXER)verif_syntax.c \
 		  $(SOURCES)$(PARSER)parser_func.c \
 		  $(SOURCES)$(PARSER)read_tree.c \
-		  $(SOURCES)$(PARSER)redir.c \
 		  $(SOURCES)$(REDI_PIPE)$(DOUBLE_REDI)double_mredir.c \
 		  $(SOURCES)$(REDI_PIPE)$(PIPE)my_path.c \
 		  $(SOURCES)$(REDI_PIPE)$(PIPE)next_pipes.c \
