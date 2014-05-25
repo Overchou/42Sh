@@ -5,7 +5,7 @@
 ** Login   <besnie_b@epitech.net>
 ** 
 ** Started on  Fri May 23 15:32:00 2014 besnie_b
-** Last update Sat May 24 16:15:46 2014 besnie_b
+** Last update Sun May 25 16:07:55 2014 besnie_b
 */
 
 /*
@@ -24,6 +24,9 @@ int     func_double_norme(t_node *node, t_env *env, int pfd[])
     {
       close(pfd[0]);
       dup2(pfd[1], 1);
+      if (verif_prio(node) != 0)
+	my_next_func(node);
+      my_check_builtin(node->data, env);
       pathcmd = my_check_access(cmd[0], my_get_path(env));
       execve(cmd[0], cmd, tab_env(env));
       return (-3);
@@ -119,6 +122,7 @@ int	double_redir_left(t_node *node, t_env *env) // gauche
     {
       dup2(pfd[0], 0);
       cmd = my_str_to_wordtab(node->p_nx2->data);
+      check_builtin(node->p_nx2->data);
       pathcmd = my_check_access(cmd[0], my_get_path(env));
       execve(pathcmd, cmd, tab_env(env));
       return (-3);

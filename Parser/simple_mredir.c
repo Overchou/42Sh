@@ -1,11 +1,11 @@
 /*
-** redir.c for parser in /home/besnie_b/42Sh/Parser
+** simple_redir.c for parser in /home/besnie_b/42Sh/Parser
 ** 
 ** Made by besnie_b
 ** Login   <besnie_b@epitech.net>
 ** 
 ** Started on  Thu May 22 18:04:28 2014 besnie_b
-** Last update Fri May 23 15:26:58 2014 besnie_b
+** Last update Sun May 25 17:25:42 2014 besnie_b
 */
 
 /*
@@ -22,12 +22,15 @@ int	redir_func_for_norme(t_node *node, t_env *env, int pfd[])
     {
       close(pfd[0]);
       dup2(pfd[1], 1);
-      my_check_access();
+      my_check_access(cmd[0], my_get_path(env));
+      if (verif_prio(node) != 0)
+	my_next_func(node);
+      check_builtin(node->data);
       execve(cmd[0], cmd, env);
       return (-3);
     }
   else
-    ; 
+    wait(&pid);
   return (0);
 }
 
@@ -74,7 +77,7 @@ int	redir_left_func_norme(t_node *node, int pfd[])
   int	fd;
   char	buff;
 
-  if ((fd = open(node->data, O_RDONLY)) = -1)
+  if ((fd = open(node->data, O_RDONLY)) = -1) // Message d'erreur si la commande n'est pas un file
     return (-2);
   dup2(pfd[1], 1);
   if (read(fd, &buf, 1) > 0)
@@ -106,7 +109,7 @@ int	redir_left(t_node *node, t_env *env)  //gauche
 {
   int	pfd[2];
   char	**cmd;
-  char	buf;
+  char	*pathcmd;
   int	pid;
 
   if (pipe(pfd) == -1)
@@ -118,11 +121,11 @@ int	redir_left(t_node *node, t_env *env)  //gauche
     {
       cmd = my_str_to_wordtab(node->p_nx2->data);
       dup2(pfd[0], 0);
-      my_check_access();
-      execve(cmd[0], cmd, my_get_path(env));
+      pathcmd = my_check_access(cmd[0], my_get_path(env));
+      execve(pathcmd, cmd, my_get_path(env));
       return (-3);
     }
   else
-    ;
+    wait(&pid);
   return (0);
 }
