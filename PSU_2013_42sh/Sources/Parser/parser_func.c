@@ -5,7 +5,7 @@
 ** Login   <besnie_b@epitech.net>
 ** 
 ** Started on  Sun May 18 14:13:38 2014 besnie_b
-** Last update Sun May 25 19:05:06 2014 theven_d
+** Last update Sun May 25 20:00:01 2014 besnie_b
 */
 
 #include <unistd.h>
@@ -14,6 +14,11 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 #include "parser.h"
+
+int	my_next_func(t_node *node, t_env *env)
+{
+  
+}
 
 int	my_op_pv_func(t_node *node, t_env *env)
 {

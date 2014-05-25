@@ -5,7 +5,7 @@
 ** Login   <besnie_b@epitech.net>
 ** 
 ** Started on  Sat May 24 16:28:19 2014 besnie_b
-** Last update Sun May 25 19:44:53 2014 theven_d
+** Last update Sun May 25 19:59:19 2014 besnie_b
 */
 
 #include <stdlib.h>
@@ -24,8 +24,9 @@ int	distrib_func(t_node *node, t_env *env)
   else if (my_strcmp_strict(node->data, "<<") == 0)
     double_redir_left(node, env);
   if (verif_prio(node) > 1)
- {
- }   
+    {
+      
+    } 
   else
     return (-1);
   return (0);

@@ -9,6 +9,7 @@
 */
 
 
+
 int	redir_func_for_norme(t_node *node, t_env *env, int pfd[])
 {
   char	**cmd;
