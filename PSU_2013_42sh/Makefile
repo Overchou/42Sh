@@ -5,7 +5,7 @@
 ## Login   <theven_d@epitech.net>
 ## 
 ## Started on  Tue May 20 15:47:47 2014 theven_d
-## Last update Sun May 25 17:59:46 2014 theven_d
+## Last update Sun May 25 18:57:32 2014 theven_d
 ##
 
 SOURCES		= Sources/
@@ -38,12 +38,17 @@ PARSER		= Parser/
 
 REDI_PIPE	= Redi_Pipe/
 
+DOUBLE_REDI	= Double_Redi/
+
+PIPE		= Pipe/
+
+SIMPLE_REDI	= Simple_Redi
+
 NAME		= vegash
 
 CC		= gcc -g
 
-SRCS		= ./Lib/my_epur_str.c \
-		  $(SOURCES)$(BUILTINS)$(ENV)$(ENV)env.c \
+SRCS		= $(SOURCES)$(BUILTINS)$(ENV)$(ENV)env.c \
 		  $(SOURCES)$(BUILTINS)$(ENV)$(ENV)aff_env.c \
 		  $(SOURCES)$(BUILTINS)$(ENV)$(SETENV)setenv.c \
 		  $(SOURCES)$(BUILTINS)$(ENV)$(SETENV)my_setenv_func.c \
@@ -70,6 +75,15 @@ SRCS		= ./Lib/my_epur_str.c \
 		  $(SOURCES)$(LEXER)my_tri_functions.c \
 		  $(SOURCES)$(LEXER)str_to_tri.c \
 		  $(SOURCES)$(LEXER)verif_syntax.c \
+		  $(SOURCES)$(PARSER)parser_func.c \
+		  $(SOURCES)$(PARSER)read_tree.c \
+		  $(SOURCES)$(PARSER)redir.c \
+		  $(SOURCES)$(REDI_PIPE)$(DOUBLE_REDI)double_mredir.c \
+		  $(SOURCES)$(REDI_PIPE)$(PIPE)my_path.c \
+		  $(SOURCES)$(REDI_PIPE)$(PIPE)next_pipes.c \
+		  $(SOURCES)$(REDI_PIPE)$(PIPE)pipes.c \
+		  $(SOURCES)$(REDI_PIPE)$(PIPE)start_pipes.c \
+		  $(SOURCES)$(REDI_PIPE)$(SIMPLE_REDI)simple_mredir.c \
 		  $(SOURCES)$(MAIN)main.c \
 		  $(SOURCES)$(MAIN)my_signal.c \
 		  $(SOURCES)$(MAIN)get_line.c \
