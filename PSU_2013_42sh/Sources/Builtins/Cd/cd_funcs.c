@@ -5,7 +5,7 @@
 ** Login   <auffra_a@epitech.net>
 ** 
 ** Started on  Fri May 23 16:14:38 2014 auffra_a
-** Last update Fri May 23 16:49:48 2014 auffra_a
+** Last update Sat May 24 23:35:47 2014 theven_d
 */
 
 #include <unistd.h>
@@ -26,7 +26,7 @@ char    *cd_pwding(t_env *env)
         {
           if ((oldpwd = my_ncpy(tmp->value, 4)) == NULL)
 	    return (NULL);
-          if ((oldpwd = my_concat("OLDPWD ", oldpwd)) == NULL)
+          if ((oldpwd = my_concat_cd("OLDPWD ", oldpwd)) == NULL)
 	    return (NULL);
           return (oldpwd);
         }
@@ -75,7 +75,7 @@ char    *cd_lesspwd(t_env *env)
         {
           if ((pwd = my_ncpy_lesspwd(tmp->value, 4, -1)) == NULL)
 	    return (NULL);
-          if ((pwd = my_concat("PWD ", pwd)) == NULL)
+          if ((pwd = my_concat_cd("PWD ", pwd)) == NULL)
 	    return (NULL);
           return (pwd);
         }

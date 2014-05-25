@@ -5,7 +5,7 @@
 ** Login   <theven_d@epitech.net>
 ** 
 ** Started on  Fri May 23 15:42:35 2014 theven_d
-** Last update Sat May 24 21:06:52 2014 theven_d
+** Last update Sat May 24 23:12:22 2014 theven_d
 */
 
 #include "env.h"
@@ -17,6 +17,7 @@ void    my_aff_env(t_env *);
 void    builtin_echo(char *);
 int     my_unsetenv(t_env *, char *);
 int     check_builtin(char *, t_env *);
+int     my_exec(char *, t_env *);
 t_env   *my_setenv(char *, t_env *);
 t_env   *shell_cd(t_env *, char *);
 

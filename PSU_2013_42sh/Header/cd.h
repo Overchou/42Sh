@@ -5,7 +5,7 @@
 ** Login   <auffra_a@epitech.net>
 ** 
 ** Started on  Fri May 23 16:48:28 2014 auffra_a
-** Last update Sat May 24 17:44:44 2014 theven_d
+** Last update Sat May 24 23:27:45 2014 theven_d
 */
 
 #include <env.h>
@@ -23,6 +23,6 @@ t_env   *cd_directory(t_env *env, char *directory);
 t_env   *shell_cd(t_env *env, char *directory);
 
 char    *my_ncpy(char *s, int x1);
-char    *my_concat(char *s1, char *s2);
+char    *my_concat_cd(char *s1, char *s2);
 
 #endif

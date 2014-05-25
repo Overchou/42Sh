@@ -5,7 +5,7 @@
 ** Login   <auffra_a@epitech.net>
 ** 
 ** Started on  Fri May 23 16:34:48 2014 auffra_a
-** Last update Sat May 24 18:44:28 2014 theven_d
+** Last update Sat May 24 23:29:48 2014 theven_d
 */
 
 #include <unistd.h>
@@ -31,3 +31,21 @@ char    *my_ncpy(char *s, int x1)
   return (str);
 }
 
+char    *my_concat_cd(char *s1, char *s2)
+{
+  char *s3;
+  int i;
+  int n;
+
+  i = -1;
+  n = -1;
+  if ((s3 = malloc(sizeof(*s3) * (strlen(s1) + strlen(s2)) + 1)) == NULL)
+    return (NULL);
+  while (s1[++i] != 0)
+    s3[++n] = s1[i];
+  i = -1;
+  while (s2[++i] != 0)
+    s3[++n] = s2[i];
+  s3[++n] = 0;
+  return (s3);
+}

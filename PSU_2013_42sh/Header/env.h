@@ -5,7 +5,7 @@
 ** Login   <theven_d@epitech.net>
 ** 
 ** Started on  Tue May 20 16:00:57 2014 theven_d
-** Last update Sat May 24 14:38:49 2014 theven_d
+** Last update Sun May 25 14:14:15 2014 theven_d
 */
 
 #ifndef ENV_H_
@@ -25,5 +25,6 @@ typedef struct s_chain
 }t_chain;
 
 t_env   *my_env_in_list(char **);
+t_env   *my_setenv(char *, t_env *);
 
 #endif

@@ -5,7 +5,7 @@
 ** Login   <theven_d@epitech.net>
 ** 
 ** Started on  Sat May 24 18:23:05 2014 theven_d
-** Last update Sat May 24 18:23:08 2014 theven_d
+** Last update Sat May 24 23:17:27 2014 theven_d
 */
 
 #include <unistd.h>
@@ -80,7 +80,7 @@ char	**my_get_path(t_env *chain_env)
     {
       if (my_nncmp(env->value, "PATH=", 0) == 0)
 	{
-	  if ((inte = my_strdupcpy(env->value)) == NULL)
+	  if ((inte = strdup(env->value)) == NULL)
 	    return (NULL);
 	  while (inte[++i] != '\0')
 	    if (inte[i] == ':' || inte[i] == '=')
@@ -146,7 +146,6 @@ int	my_exec(char *buffer, t_env *chain_env)
     }
   else
     wait(&status);
-  free(buffer);
   my_free_tab(arg);
   return (0);
 }

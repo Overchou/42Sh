@@ -5,7 +5,7 @@
 ** Login   <auffra_a@epitech.net>
 ** 
 ** Started on  Thu May 22 18:11:39 2014 auffra_a
-** Last update Sat May 24 20:44:06 2014 theven_d
+** Last update Sun May 25 14:43:32 2014 theven_d
 */
 
 #include <unistd.h>
@@ -13,7 +13,8 @@
 #include <stdlib.h>
 #include "my.h"
 #include "cd.h"
- 
+#include "env.h"
+
 t_env	*cd_prev(t_env *env)
 {
   char *oldpwd;
@@ -23,11 +24,10 @@ t_env	*cd_prev(t_env *env)
     return (NULL);
   if ((pwd = cd_lesspwd(env)) == NULL)
     return (NULL);
-  my_printf("\n%s\n%s\n", pwd, oldpwd);
   if ((chdir("..")) != 0)
     return (NULL);
-  //  env = setenv(pwd, env);
-  //  env = setenv(oldpwd, env);
+  env = my_setenv(pwd, env);
+  env = my_setenv(oldpwd, env);
   return (env);
 }
 
@@ -47,10 +47,9 @@ t_env	*cd_minus(t_env *env)
 	  pwd = my_ncpy(tmp->value, 7);
 	  if ((chdir(pwd)) != 0)
 	    return (NULL);
-	  pwd = my_concat("PWD ", pwd);
-	  my_printf("\n%s\n%s\n", pwd, oldpwd);
-	  //	  env = setenv(pwd, env);
-	  //	  env = setenv(oldpwd, env);
+	  pwd = my_concat_cd("PWD ", pwd);
+	  env = my_setenv(pwd, env);
+	  env = my_setenv(oldpwd, env);
 	  return (env);
 	}
       tmp = tmp->next;
@@ -71,24 +70,59 @@ t_env	*cd_directory(t_env *env, char *directory)
       if ((my_nncmp(tmp->value, "PWD=", 0)) == 0)
 	{
 	  oldpwd = my_ncpy(tmp->value, 4);
-	  pwd = my_concat("PWD ", my_concat(my_concat(oldpwd, "/"), directory));
-	  oldpwd = my_concat("OLDPWD ", oldpwd);
-	  my_printf("\n%s\n%s\n", oldpwd, pwd);
+	  pwd = my_concat_cd("PWD ", my_concat_cd(my_concat_cd(oldpwd, "/"), directory));
+	  oldpwd = my_concat_cd("OLDPWD ", oldpwd);
 	  if ((chdir(directory)) != 0)
-	    return (NULL);
-	  //	  env = setenv(pwd, env);
-	  //	  env = setenv(oldpwd, env);
+	    {
+	      my_printf("vegash: cd: %s: Not a directory\n", directory);
+	      return (NULL);
+	    }
+	  env = my_setenv(pwd, env);
+	  env = my_setenv(oldpwd, env);
 	  return (env);
 	}
       tmp = tmp->next;
     }
   return (env);
 }
+t_env   *cd_go_home(t_env *env)
+{
+  t_env *tmp;
+  char *home;
+  char *oldpwd;
+  char *pwd;
+
+  tmp = env;
+  while (tmp != NULL)
+    {
+      if ((my_nncmp(tmp->value, "HOME=", 0)) == 0)
+        {
+          home = my_ncpy(tmp->value, 5);
+          pwd = my_concat_cd("PWD ", home);
+          chdir(home);
+        }
+      if ((my_nncmp(tmp->value, "PWD=", 0)) == 0)
+        oldpwd = my_concat_cd("OLDPWD ", my_ncpy(tmp->value, 4));
+      tmp = tmp->next;
+    }
+  env = my_setenv(oldpwd, env);
+  env = my_setenv(pwd, env);
+  return (env);
+}
 
 t_env	*shell_cd(t_env *env, char *directory)
-{
+{  
+  if (directory == NULL)
+    {
+      env = cd_go_home(env);
+      return (env);
+    }
   if ((my_nncmp(directory, "..", 0)) == 0)
     env = cd_prev(env);
+  else if ((my_nncmp(directory, "-L", 0)) == 0)
+    env = cd_go_home(env);
+  else if ((my_nncmp(directory, "-P", 0)) == 0)
+    env = cd_go_home(env);
   else if ((my_nncmp(directory, "-", 0)) == 0)
     env = cd_minus(env);
   else
